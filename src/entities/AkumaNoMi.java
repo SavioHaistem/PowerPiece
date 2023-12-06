@@ -17,6 +17,4 @@ public class AkumaNoMi extends Fruit {
         this.description = description;
         this.name = name;
     }
-
-
 }
