@@ -17,4 +17,15 @@ public class AkumaNoMi extends Fruit {
         this.description = description;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder akumanomi = new StringBuilder();
+        akumanomi.append("!!! -- ").append(this.name).append(" -- !!!\n\n");
+        akumanomi.append("type: ").append(this.akumaType).append("\n");
+        akumanomi.append("rarity: ").append(this.akumaRarity).append("\n\n");
+        akumanomi.append("description: \n").append(this.description);
+
+        return akumanomi.toString();
+    }
 }
