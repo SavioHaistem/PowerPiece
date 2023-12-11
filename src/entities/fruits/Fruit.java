@@ -1,9 +1,11 @@
-package entities;
+package entities.fruits;
 
 import enums.fruits.FruitType;
 
 public class Fruit {
-    protected final FruitType fruitType;
+    private FruitType fruitType;
+
+    public Fruit() {}
 
     public Fruit(FruitType fruitType) {
         this.fruitType = fruitType;

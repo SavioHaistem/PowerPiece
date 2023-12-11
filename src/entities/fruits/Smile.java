@@ -1,5 +1,6 @@
-package entities;
+package entities.fruits;
 
+import entities.fruits.Fruit;
 import enums.fruits.FruitType;
 import enums.smiles.SmileType;
 

@@ -1,14 +1,18 @@
-package entities;
+package entities.fruits;
 
 import enums.akumanomis.AkumaRarity;
 import enums.akumanomis.AkumaType;
 import enums.fruits.FruitType;
 
 public class AkumaNoMi extends Fruit {
-    private final AkumaType akumaType;
-    private final AkumaRarity akumaRarity;
-    public final String description;
-    public final String name;
+    private AkumaType akumaType;
+    private AkumaRarity akumaRarity;
+    private String description;
+    private String name;
+
+    public AkumaNoMi() {
+        super();
+    }
 
     public AkumaNoMi(AkumaType akumaType, AkumaRarity akumaRarity, String description, String name) {
         super(FruitType.AKUMA);
