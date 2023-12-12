@@ -1,6 +1,6 @@
 package application;
 
-import entities.AkumaNoMi;
+import entities.fruits.AkumaNoMi;
 import enums.akumanomis.AkumaRarity;
 import enums.akumanomis.AkumaType;
 
@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class AkumaFactory {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.printf("\n\nCreate your Akuma no mi! game\n\n");
+        System.out.print("\n\nCreate your Akuma no mi! game\n\n");
         System.out.print("Type Akuma name: ");
         String name = scan.nextLine();
         System.out.print("Choose Akuma no mi type (ZOAN,PARAMECIA,LOGIA): ");
