@@ -11,7 +11,7 @@ public class AkumaNoMi extends Fruit {
     private String name;
 
     public AkumaNoMi() {
-        super();
+        super(FruitType.AKUMA);
     }
 
     public AkumaNoMi(AkumaType akumaType, AkumaRarity akumaRarity, String description, String name) {
