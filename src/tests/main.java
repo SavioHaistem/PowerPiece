@@ -17,12 +17,6 @@ public class main {
             } else {
                 healthBar.add(tinyLowHealthBar);
             }
-            //if (maxPlayerLife)
-            //TODO: planejar como a barra de vida vai ser refeita a cada dano;
-            //teoria: checar se a barra de vida máxima menos a barra de vida atual é igual a zero
-            //teoria2: preencha todos os campos da vida atual por '█', se no final ainda faltar pontos de vida
-            //preencha o restante com '░';
-            // maxLife (100) - currentLife (90) = 10;
         }
 
         int damage = 20;
