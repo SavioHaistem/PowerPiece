@@ -2,7 +2,7 @@
 In this game you consume akuma no mis to gain powers and explore dungeons.
 All this on your terminal !
 
-##Lets start !
+## Lets start !
 ### 🧑🏽 create your player
 your player will have a health bar with 100PV and one basic atack with -5pv.
 ### 🍇 choose your Akuma no Mi
