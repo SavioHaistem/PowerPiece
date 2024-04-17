@@ -2,7 +2,7 @@ package tests;
 
 import java.util.*;
 
-public class main {
+public class healthbar {
     public static void main(String[] args) {
         int maxPlayerLife = 100;
         int playerCurrentLife = 10;
@@ -20,7 +20,6 @@ public class main {
         }
 
         int damage = 20;
-        //healthBar.get()
         healthBar.forEach(System.out::print);
     }
 }
