@@ -1,10 +1,10 @@
 package application;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import db.DB;
+import java.sql.Connection;
 
 public class AkumaFactory {
     public static void main(String[] args) {
-
+        Connection connection = DB.getConnection();
+        DB.closeConnection(connection);
     }
 }
