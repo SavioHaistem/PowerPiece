@@ -2,16 +2,15 @@ package db;
 import exceptions.DbException;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DB {
     private static Connection connection = null;
     public static Connection getConnection() throws DbException {
         String basepath = new File("").getAbsolutePath();
+
         try {
             Class.forName("org.sqlite.JDBC");
             if (connection == null) {
@@ -25,6 +24,19 @@ public class DB {
             throw new DbException(e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("classForNameError");
+        }
+    }
+
+    public static Map<Integer, String> getAkumas() {
+        try(Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Akumas;");
+            Map<Integer,String> response = new TreeMap<>();
+            while (resultSet.next()) {
+                response.put(resultSet.getInt(1),resultSet.getString(2));
+            }
+            return response;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
         }
     }
 
