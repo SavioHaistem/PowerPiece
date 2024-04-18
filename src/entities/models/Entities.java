@@ -3,15 +3,24 @@ package entities.models;
 import interfaces.Entity;
 
 public abstract class Entities implements Entity {
-    private Integer life;
+    private Integer maxLife;
+    private LifeBar lifeBar;
     private String name;
 
-    public Integer getLife() {
-        return life;
+    public Integer getMaxLife() {
+        return maxLife;
     }
 
-    public void setLife(Integer life) {
-        this.life = life;
+    public void setMaxLife(Integer maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    public LifeBar getLifeBar() {
+        return lifeBar;
+    }
+
+    public void setLifeBar(LifeBar lifeBar) {
+        this.lifeBar = lifeBar;
     }
 
     public String getName() {
