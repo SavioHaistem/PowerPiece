@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface FigthfulEntity {
-    void atack(FigthfulEntity figthfulEntity);
+public interface AtackableEntity {
+    void atack(AtackableEntity atackableEntity);
     String say(String sayed);
 }

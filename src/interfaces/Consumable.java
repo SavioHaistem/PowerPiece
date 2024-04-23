@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface Fruit {
+public interface Consumable {
     void Eat();
 }
