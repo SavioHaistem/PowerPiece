@@ -6,7 +6,7 @@ import interfaces.AtackableEntity;
 
 public class BlackBeard extends Entity {
     public BlackBeard() {
-        super(10000,new LifeBar(100000),"Black Beard");
+        super(new LifeBar(10000,1000),"Black Beard");
     }
 
     @Override

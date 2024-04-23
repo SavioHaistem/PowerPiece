@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LifeBar {
-    protected List<Character> lifeBar = new ArrayList<>();
-    protected Character tinyHealth = '█';
-    protected Character tinyUnHealth = '░';
     protected Integer maxLife;
     protected Integer currentLife;
+    protected ArrayList<Character> healthBar = new ArrayList<>();
 
     public LifeBar() {}
-    public LifeBar(Integer maxLife) {
+    public LifeBar(Integer maxLife, Integer currentLife) {
         this.maxLife = maxLife;
+        this.currentLife = currentLife;
     }
 
     public List<Character> getLifeBar() {
-        return lifeBar;
+        updateHealthBar();
+        return healthBar;
     }
 
     public Integer getMaxLife() {
@@ -33,5 +33,17 @@ public class LifeBar {
 
     public void setCurrentLife(Integer currentLife) {
         this.currentLife = currentLife;
+    }
+
+    public void updateHealthBar() {
+        for (int tiny = maxLife / 10; tiny <= maxLife; tiny += maxLife / 10) {
+            if (currentLife >= tiny) {
+                healthBar.add('█');
+                healthBar.get(0);
+            } else {
+                healthBar.add('░');
+            }
+        }
+        System.out.println(healthBar.size());
     }
 }

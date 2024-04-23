@@ -5,7 +5,7 @@ import java.util.*;
 public class healthbar {
     public static void main(String[] args) {
         int maxPlayerLife = 100;
-        int playerCurrentLife = 10;
+        int playerCurrentLife = 40;
         StringBuilder str = new StringBuilder();
         char tinyHealthBar = '█';
         char tinyLowHealthBar = '░';
