@@ -1,7 +1,6 @@
 package entities.akumanomis;
 
 import enums.AkumasType;
-import interfaces.Fruit;
 
 public class Smile extends AkumaNoMi {
 

@@ -1,12 +1,16 @@
 package entities;
 
-import entities.models.Entities;
-import interfaces.Entity;
+import entities.models.LifeBar;
+import interfaces.AtackableEntity;
 
-public class Player extends Entities {
+public class Player extends Entity {
+
+    public Player(Integer maxLife, LifeBar lifeBar, String name) {
+        super(maxLife, lifeBar, name);
+    }
 
     @Override
-    public void atack(Entity entity) {
+    public void atack(AtackableEntity atackableEntity) {
 
     }
 
