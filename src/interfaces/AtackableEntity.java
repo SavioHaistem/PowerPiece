@@ -1,6 +1,8 @@
 package interfaces;
 
+import entities.Entity;
+
 public interface AtackableEntity {
-    void atack(AtackableEntity atackableEntity);
+    void atack(Entity entity, int damage);
     String say(String sayed);
 }

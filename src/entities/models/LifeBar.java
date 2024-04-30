@@ -35,15 +35,24 @@ public class LifeBar {
         this.currentLife = currentLife;
     }
 
+    public void receiveDamage(int damage) {
+        currentLife -= damage;
+    }
+
     public void updateHealthBar() {
+        healthBar.removeAll(healthBar);
         for (int tiny = maxLife / 10; tiny <= maxLife; tiny += maxLife / 10) {
             if (currentLife >= tiny) {
                 healthBar.add('█');
-                healthBar.get(0);
             } else {
                 healthBar.add('░');
             }
         }
         System.out.println(healthBar.size());
+    }
+
+    @Override
+    public String toString() {
+        return getLifeBar().toString();
     }
 }

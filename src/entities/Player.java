@@ -10,7 +10,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public void atack(AtackableEntity atackableEntity) {
+    public void atack(Entity entity,int damage) {
 
     }
 

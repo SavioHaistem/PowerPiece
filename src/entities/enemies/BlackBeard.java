@@ -6,16 +6,16 @@ import interfaces.AtackableEntity;
 
 public class BlackBeard extends Entity {
     public BlackBeard() {
-        super(new LifeBar(10000,1000),"Black Beard");
+        super(new LifeBar(10000,10000),"Black Beard");
     }
 
     @Override
-    public void atack(AtackableEntity atackableEntity) {
-
+    public void atack(Entity entity,int damage) {
+        entity.getLifeBar().receiveDamage(damage);
     }
 
     @Override
     public String say(String sayed) {
-        return "Zehahahaha! you will lost";
+        return "zehahahaha! you will lost";
     }
 }

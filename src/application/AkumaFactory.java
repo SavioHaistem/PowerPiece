@@ -1,9 +1,13 @@
 package application;
+import entities.Entity;
 import entities.enemies.BlackBeard;
+import interfaces.AtackableEntity;
 
 public class AkumaFactory {
     public static void main(String[] args) {
-        BlackBeard blackBeard = new BlackBeard();
+        Entity blackBeard = new BlackBeard();
+        System.out.println(blackBeard);
+        blackBeard.atack(blackBeard,10);
         System.out.println(blackBeard);
     }
 }
