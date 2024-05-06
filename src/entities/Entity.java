@@ -32,6 +32,11 @@ public abstract class Entity implements AtackableEntity {
     }
 
     @Override
+    public void atack(Entity entity, int damage) {
+        entity.getLifeBar().receiveDamage(damage);
+    }
+
+    @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
         entity.append("{{{-----()-----}}").append('\n');

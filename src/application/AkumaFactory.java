@@ -1,7 +1,6 @@
 package application;
 import entities.Entity;
 import entities.enemies.BlackBeard;
-import interfaces.AtackableEntity;
 
 public class AkumaFactory {
     public static void main(String[] args) {

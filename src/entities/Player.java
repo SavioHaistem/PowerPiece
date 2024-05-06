@@ -10,11 +10,6 @@ public class Player extends Entity {
     }
 
     @Override
-    public void atack(Entity entity,int damage) {
-
-    }
-
-    @Override
     public String say(String sayed) {
         return null;
     }

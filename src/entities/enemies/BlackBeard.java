@@ -10,11 +10,6 @@ public class BlackBeard extends Entity {
     }
 
     @Override
-    public void atack(Entity entity,int damage) {
-        entity.getLifeBar().receiveDamage(damage);
-    }
-
-    @Override
     public String say(String sayed) {
         return "zehahahaha! you will lost";
     }
