@@ -1,7 +1,5 @@
 package entities;
-
 import entities.models.LifeBar;
-import interfaces.AtackableEntity;
 
 public class Player extends Entity {
 
