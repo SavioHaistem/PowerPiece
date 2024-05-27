@@ -3,8 +3,8 @@ import enums.AkumasType;
 
 public class Zoan extends AkumaNoMi {
 
-    public Zoan(String name, AkumasType type, Integer id) {
-        super(name, type, id);
+    public Zoan(String name, Integer id) {
+        super(name, id);
         type = AkumasType.ZOAN;
     }
 }

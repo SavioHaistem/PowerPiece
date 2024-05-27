@@ -4,8 +4,8 @@ import enums.AkumasType;
 
 public class Smile extends AkumaNoMi {
 
-    public Smile(String name, AkumasType type, Integer id) {
-        super(name, type, id);
+    public Smile(String name, Integer id) {
+        super(name, id);
         type = AkumasType.SMILE;
     }
 }

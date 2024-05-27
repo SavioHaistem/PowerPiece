@@ -2,6 +2,7 @@ package db.dao.impl;
 
 import db.dao.AkumaDao;
 import entities.akumanomis.AkumaNoMi;
+import entities.akumanomis.Paramecia;
 import enums.AkumasType;
 
 import java.sql.Connection;
@@ -36,5 +37,9 @@ public class AkumaDaoJdbc implements AkumaDao {
     @Override
     public List<AkumaNoMi> findByType(AkumasType type) {
         return List.of();
+    }
+
+    public AkumaNoMi instanciateAkuma() {
+        return new Paramecia("shoshonomi",1);
     }
 }

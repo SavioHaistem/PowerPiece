@@ -1,16 +1,15 @@
 package entities.akumanomis;
 
 import enums.AkumasType;
-import interfaces.Consumable;
+import interfaces.Fruit;
 
-public abstract class AkumaNoMi implements Consumable {
+public abstract class AkumaNoMi implements Fruit {
     protected String name;
     protected AkumasType type;
     protected Integer id;
 
-    public AkumaNoMi(String name, AkumasType type, Integer id) {
+    public AkumaNoMi(String name, Integer id) {
         this.name = name;
-        this.type = type;
         this.id = id;
     }
 
