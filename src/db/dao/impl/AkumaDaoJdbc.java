@@ -4,9 +4,14 @@ import db.dao.AkumaDao;
 import entities.akumanomis.AkumaNoMi;
 import enums.AkumasType;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class AkumaDaoJdbc implements AkumaDao {
+    Connection connection = null;
+    public AkumaDaoJdbc(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public void add(AkumaNoMi akumaNoMi) {
