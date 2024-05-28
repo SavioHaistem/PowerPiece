@@ -1,7 +1,11 @@
 package entities.models;
 
-public class Power {
+import interfaces.Atackable;
+import interfaces.Attack;
+
+public class Power implements Attack {
     private String name;
+    private Integer damage;
     private Integer id;
     private String hability;
 
@@ -37,5 +41,10 @@ public class Power {
 
     public void setHability(String hability) {
         this.hability = hability;
+    }
+
+    @Override
+    public void inflictDamage(Atackable entity, Integer damage) {
+        entity.takeDamage(damage);
     }
 }
