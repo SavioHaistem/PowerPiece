@@ -40,6 +40,6 @@ public class AkumaDaoJdbc implements AkumaDao {
     }
 
     public AkumaNoMi instanciateAkuma() {
-        return new Paramecia("shoshonomi",1);
+        return new Paramecia("GomuGomu",1);
     }
 }
