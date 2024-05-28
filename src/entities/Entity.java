@@ -1,18 +1,32 @@
 package entities;
 
 import entities.models.LifeBar;
+import entities.models.Power;
 import interfaces.Atackable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Entity implements Atackable {
     protected LifeBar lifeBar;
+    protected Integer entityId;
     protected String name;
+    protected Map<Integer,Power> powers = new HashMap<>();
 
     public Entity() {
     }
 
-    public Entity(LifeBar lifeBar, String name) {
+    public Entity(Integer entityId, String name, LifeBar lifeBar) {
         this.lifeBar = lifeBar;
         this.name = name;
+        this.entityId = entityId;
+    }
+
+    public Entity(Integer entityId, String name, LifeBar lifeBar,Map<Integer, Power> powers) {
+        this.entityId = entityId;
+        this.lifeBar = lifeBar;
+        this.name = name;
+        this.powers = powers;
     }
 
     public LifeBar getLifeBar() {
@@ -31,10 +45,27 @@ public abstract class Entity implements Atackable {
         this.name = name;
     }
 
+    public Map<Integer, Power> getPowers() {
+        return powers;
+    }
+
+    public void setPowers(Map<Integer, Power> powers) {
+        this.powers = powers;
+    }
+
+    public Integer getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(Integer entityId) {
+        this.entityId = entityId;
+    }
+
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
         entity.append("==================").append('\n');
+        entity.append(entityId).append('\n');
         entity.append(name).append('\n');
         for (Character health : lifeBar.getLifeBar()) {
             entity.append(health);
