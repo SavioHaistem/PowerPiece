@@ -9,6 +9,10 @@ public class LifeBar {
     protected ArrayList<Character> healthBar = new ArrayList<>();
 
     public LifeBar() {}
+    public LifeBar(Integer maxLife) {
+        this.maxLife = maxLife;
+        this.currentLife = maxLife;
+    }
     public LifeBar(Integer maxLife, Integer currentLife) {
         this.maxLife = maxLife;
         this.currentLife = currentLife;
@@ -48,7 +52,6 @@ public class LifeBar {
                 healthBar.add('░');
             }
         }
-        System.out.println(healthBar.size());
     }
 
     @Override
