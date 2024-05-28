@@ -2,7 +2,6 @@ package entities.enemies;
 
 import entities.Entity;
 import entities.models.LifeBar;
-import interfaces.AtackableEntity;
 
 public class BlackBeard extends Entity {
     public BlackBeard() {

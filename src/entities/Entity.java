@@ -1,9 +1,9 @@
 package entities;
 
 import entities.models.LifeBar;
-import interfaces.AtackableEntity;
+import interfaces.Atackable;
 
-public abstract class Entity implements AtackableEntity {
+public abstract class Entity implements Atackable {
     protected LifeBar lifeBar;
     protected String name;
 
@@ -32,11 +32,6 @@ public abstract class Entity implements AtackableEntity {
     }
 
     @Override
-    public void atack(Entity entity, int damage) {
-        entity.getLifeBar().receiveDamage(damage);
-    }
-
-    @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
         entity.append("==================").append('\n');
@@ -47,5 +42,10 @@ public abstract class Entity implements AtackableEntity {
         entity.append('\n');
         entity.append("==================").append('\n');
         return entity.toString();
+    }
+
+    @Override
+    public void takeDamage(Integer damage) {
+        lifeBar.receiveDamage(damage);
     }
 }
