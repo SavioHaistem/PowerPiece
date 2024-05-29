@@ -18,7 +18,7 @@ public abstract class AkumaNoMi implements Fruit {
         this.id = id;
         this.powers = powers;
     }
-    public AkumaNoMi(String name, AkumasType type, Integer id, Map<Integer, Power> powers) {
+    public AkumaNoMi(String name, Integer id, AkumasType type, Map<Integer, Power> powers) {
         this.name = name;
         this.type = type;
         this.id = id;
@@ -52,5 +52,17 @@ public abstract class AkumaNoMi implements Fruit {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Map<Integer, Power> getPowers() {
+        return powers;
+    }
+
+    public void setPowers(Map<Integer, Power> powers) {
+        this.powers = powers;
+    }
+
+    public Power getPower(Integer powerId) {
+        return powers.get(powerId);
     }
 }

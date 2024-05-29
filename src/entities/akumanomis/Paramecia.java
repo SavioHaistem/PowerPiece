@@ -10,11 +10,11 @@ public class Paramecia extends AkumaNoMi {
         super(akumasType);
     }
 
-    public Paramecia(String name, Integer id, AkumasType type) {
-        super(name, id, type);
+    public Paramecia(String name, Integer id) {
+        super(name, id, AkumasType.PARAMECIA);
     }
 
-    public Paramecia(String name, AkumasType type, Integer id, Map<Integer, Power> powers) {
-        super(name, type, id, powers);
+    public Paramecia(String name, Integer id, Map<Integer, Power> powers) {
+        super(name, id, AkumasType.PARAMECIA, powers);
     }
 }
