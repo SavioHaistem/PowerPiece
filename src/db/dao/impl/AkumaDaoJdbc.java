@@ -1,9 +1,9 @@
 package db.dao.impl;
 
 import db.dao.AkumaDao;
-import entities.akumanomis.AkumaNoMi;
-import entities.akumanomis.Paramecia;
+import entities.akumanomis.*;
 import enums.AkumasType;
+import exceptions.DbException;
 
 import java.sql.Connection;
 import java.util.List;
@@ -39,7 +39,13 @@ public class AkumaDaoJdbc implements AkumaDao {
         return List.of();
     }
 
-    public AkumaNoMi instanciateAkuma() {
-        return new Paramecia("GomuGomu",1);
+    public AkumaNoMi instantiateAkuma(AkumaNoMi akuma) {
+        return switch (akuma.getType()) {
+            case PARAMECIA -> new Paramecia(akuma.getName(), akuma.getId());
+            case ZOAN -> new Zoan(akuma.getName(), akuma.getId());
+            case LOGIA -> new Logia(akuma.getName(), akuma.getId());
+            case SMILE -> new Smile(akuma.getName(), akuma.getId());
+            case null, default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
+        };
     }
 }
