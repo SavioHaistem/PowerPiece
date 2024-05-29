@@ -3,7 +3,6 @@ import entities.Entity;
 import entities.Player;
 
 import java.util.Map;
-
 public class Transformation extends Entity {
     private Player player = null;
 

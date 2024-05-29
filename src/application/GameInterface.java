@@ -1,16 +1,10 @@
 package application;
-
-import db.DB;
-import db.dao.AkumaDao;
-import db.dao.DaoFactory;
-import entities.Entity;
 import entities.Player;
 import entities.models.LifeBar;
 import entities.models.Power;
 import entities.models.Transformation;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GameInterface {
