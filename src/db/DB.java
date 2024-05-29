@@ -54,4 +54,20 @@ public class DB {
     public static void setConnection(Connection connection) {
         DB.connection = connection;
     }
+
+    public void closeResultSet(ResultSet resultSet) {
+        try {
+            resultSet.close();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
+
+    public void closeStatment(Statement statement) {
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
 }
