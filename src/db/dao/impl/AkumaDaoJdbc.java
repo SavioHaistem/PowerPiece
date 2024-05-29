@@ -1,11 +1,15 @@
 package db.dao.impl;
 
+import db.DB;
 import db.dao.AkumaDao;
 import entities.akumanomis.*;
 import enums.AkumasType;
 import exceptions.DbException;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class AkumaDaoJdbc implements AkumaDao {
@@ -16,7 +20,17 @@ public class AkumaDaoJdbc implements AkumaDao {
 
     @Override
     public void add(AkumaNoMi akumaNoMi) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO AkumaNoMis "
+                    +   "(name,type,powers) "
+                    +   "VALUES (?,?,?,?) ",
+                    Statement.RETURN_GENERATED_KEYS
+            );
 
+        } catch (SQLException e) {
+            throw new DbException(e.getSQLState());
+        }
     }
 
     @Override

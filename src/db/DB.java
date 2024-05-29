@@ -40,6 +40,10 @@ public class DB {
         }
     }
 
+    public static void setConnection(Connection connection) {
+        DB.connection = connection;
+    }
+
     public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
@@ -49,10 +53,6 @@ public class DB {
                 throw new DbException(e.getMessage());
             }
         }
-    }
-
-    public static void setConnection(Connection connection) {
-        DB.connection = connection;
     }
 
     public void closeResultSet(ResultSet resultSet) {
