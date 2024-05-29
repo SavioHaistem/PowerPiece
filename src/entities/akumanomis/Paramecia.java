@@ -1,11 +1,20 @@
 package entities.akumanomis;
 
+import entities.models.Power;
 import enums.AkumasType;
 
-public class Paramecia extends AkumaNoMi {
+import java.util.Map;
 
-    public Paramecia(String name, Integer id) {
-        super(name, id);
-        type = AkumasType.PARAMECIA;
+public class Paramecia extends AkumaNoMi {
+    public Paramecia(AkumasType akumasType) {
+        super(akumasType);
+    }
+
+    public Paramecia(String name, Integer id, AkumasType type) {
+        super(name, id, type);
+    }
+
+    public Paramecia(String name, AkumasType type, Integer id, Map<Integer, Power> powers) {
+        super(name, type, id, powers);
     }
 }
