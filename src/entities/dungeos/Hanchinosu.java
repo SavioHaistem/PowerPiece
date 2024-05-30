@@ -2,6 +2,7 @@ package entities.dungeos;
 
 import entities.enemies.Enemy;
 
+import java.util.Deque;
 import java.util.Map;
 
 public class Hanchinosu extends Dungeon {
@@ -12,7 +13,7 @@ public class Hanchinosu extends Dungeon {
         super(id, name);
     }
 
-    public Hanchinosu(Integer id, String name, Enemy endboss, Map<Integer, Enemy> enemys) {
-        super(id, name, endboss, enemys);
+    public Hanchinosu(Integer id, String name, Enemy endboss, Deque<Chamber> instances) {
+        super(id, name, endboss, instances);
     }
 }

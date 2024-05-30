@@ -2,14 +2,15 @@ package entities.dungeos;
 
 import entities.enemies.Enemy;
 
-import java.util.HashMap;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Map;
 
 public abstract class Dungeon {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
-    protected Map<Integer,Enemy> enemys = new HashMap<>();
+    protected Deque<Chamber> instances = new ArrayDeque<>();
 
     public Dungeon() {
     }
@@ -19,15 +20,15 @@ public abstract class Dungeon {
         this.name = name;
     }
 
-    public Dungeon(Integer id, String name, Enemy endboss, Map<Integer, Enemy> enemys) {
+    public Dungeon(Integer id, String name, Enemy endBoss, Deque<Chamber> instances) {
         this.id = id;
         this.name = name;
-        this.endBoss = endboss;
-        this.enemys = enemys;
+        this.endBoss = endBoss;
+        this.instances = instances;
     }
 
     public boolean isActive() {
-        return !enemys.isEmpty() && endBoss.isLive();
+        return !instances.isEmpty();
     }
 
     public Integer getId() {
@@ -55,11 +56,11 @@ public abstract class Dungeon {
         this.endBoss = endBoss;
     }
 
-    public Map<Integer, Enemy> getEnemys() {
-        return enemys;
+    public Deque<Chamber> getInstances() {
+        return instances;
     }
 
-    public void setEnemys(Map<Integer, Enemy> enemys) {
-        this.enemys = enemys;
+    public void setInstances(Deque<Chamber> instances) {
+        this.instances = instances;
     }
 }
