@@ -1,5 +1,6 @@
 package entities.dungeos;
 
+import entities.Player;
 import entities.enemies.Enemy;
 
 import java.util.ArrayDeque;
@@ -20,6 +21,12 @@ public abstract class Dungeon {
         this.name = name;
     }
 
+    public Dungeon(Integer id, String name, Deque<Chamber> instances) {
+        this.id = id;
+        this.name = name;
+        this.instances = instances;
+    }
+
     public Dungeon(Integer id, String name, Enemy endBoss, Deque<Chamber> instances) {
         this.id = id;
         this.name = name;
@@ -29,6 +36,10 @@ public abstract class Dungeon {
 
     public boolean isActive() {
         return !instances.isEmpty();
+    }
+
+    public void quitDungeon() {
+        this.instances = new ArrayDeque<>();
     }
 
     public Integer getId() {
@@ -62,5 +73,10 @@ public abstract class Dungeon {
 
     public void setInstances(Deque<Chamber> instances) {
         this.instances = instances;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + ": " + this.id;
     }
 }

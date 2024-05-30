@@ -13,6 +13,10 @@ public class Hanchinosu extends Dungeon {
         super(id, name);
     }
 
+    public Hanchinosu(Integer id, String name, Deque<Chamber> instances) {
+        super(id, name, instances);
+    }
+
     public Hanchinosu(Integer id, String name, Enemy endboss, Deque<Chamber> instances) {
         super(id, name, endboss, instances);
     }
