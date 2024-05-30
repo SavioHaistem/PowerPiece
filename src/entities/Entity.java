@@ -33,6 +33,10 @@ public abstract class Entity implements Atackable {
         return lifeBar;
     }
 
+    public boolean isLive() {
+        return lifeBar.getCurrentLife() > 0;
+    }
+
     public void setLifeBar(LifeBar lifeBar) {
         this.lifeBar = lifeBar;
     }
