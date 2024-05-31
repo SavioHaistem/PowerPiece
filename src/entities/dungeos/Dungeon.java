@@ -1,11 +1,8 @@
 package entities.dungeos;
-
-import entities.Player;
 import entities.enemies.Enemy;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Map;
 
 public abstract class Dungeon {
     protected Integer id;
