@@ -11,7 +11,7 @@ public class Chamber {
     private Integer id;
     private String name;
     private List<Enemy> enemies = new ArrayList<>();
-    private Player instancePlayer = null;
+    private Integer dungeonID = null;
     private boolean complete = false;
 
     public Chamber() {}

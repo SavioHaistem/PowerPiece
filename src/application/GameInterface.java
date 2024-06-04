@@ -4,15 +4,14 @@ import entities.dungeos.Chamber;
 import entities.dungeos.Hanchinosu;
 import entities.enemies.Enemy;
 import entities.models.LifeBar;
+import services.CombatServie;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 
 public class GameInterface {
     public static void main(String[] args) {
-        //TODO: game party method;
-        //TODO: auto instance dungeon method;
-
         Player sinkOne = new Player(1,"SinkOne",new LifeBar(100),new HashMap<>());
         Player sinkTwo = new Player(2,"SinkTwo",new LifeBar(100),new HashMap<>());
 
@@ -29,6 +28,7 @@ public class GameInterface {
         System.out.println("Hachinosu active ? " + hachinosu.isActive());
         while (hachinosu.isActive()) {
             System.out.println("is active");
+
         }
     }
 }

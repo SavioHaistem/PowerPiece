@@ -10,6 +10,7 @@ import java.util.Map;
 public abstract class Entity implements Atackable {
     protected LifeBar lifeBar;
     protected Integer entityId;
+    protected Integer chamberID;
     protected String name;
     protected Map<Integer,Power> powers = new HashMap<>();
 
@@ -27,6 +28,14 @@ public abstract class Entity implements Atackable {
         this.lifeBar = lifeBar;
         this.name = name;
         this.powers = powers;
+    }
+
+    public Entity(Integer entityId, String name, LifeBar lifeBar,Map<Integer, Power> powers, Integer chamberID) {
+        this.entityId = entityId;
+        this.lifeBar = lifeBar;
+        this.name = name;
+        this.powers = powers;
+        this.chamberID = chamberID;
     }
 
     public LifeBar getLifeBar() {
@@ -63,6 +72,14 @@ public abstract class Entity implements Atackable {
 
     public void setEntityId(Integer entityId) {
         this.entityId = entityId;
+    }
+
+    public Integer getChamberID() {
+        return chamberID;
+    }
+
+    public void setChamberID(Integer chamberID) {
+        this.chamberID = chamberID;
     }
 
     @Override
