@@ -1,4 +1,7 @@
 package application;
+import db.dao.AkumaDao;
+import db.dao.DaoFactory;
+import db.dao.impl.AkumaDaoJdbc;
 import entities.Player;
 import entities.dungeos.Chamber;
 import entities.dungeos.Hanchinosu;
@@ -12,6 +15,9 @@ import java.util.HashMap;
 
 public class GameInterface {
     public static void main(String[] args) {
+
+        AkumaDaoJdbc akumaDaoJdbc = DaoFactory.createAkumaDao();
+        akumaDaoJdbc.findAll().forEach(System.out::println);
         Player sinkOne = new Player(1,"SinkOne",new LifeBar(100),new HashMap<>());
         Player sinkTwo = new Player(2,"SinkTwo",new LifeBar(100),new HashMap<>());
 
@@ -28,7 +34,7 @@ public class GameInterface {
         System.out.println("Hachinosu active ? " + hachinosu.isActive());
         while (hachinosu.isActive()) {
             System.out.println("is active");
-
+            hachinosu.setInstances(new ArrayDeque<>());
         }
     }
 }

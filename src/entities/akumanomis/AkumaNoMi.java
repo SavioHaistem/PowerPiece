@@ -65,4 +65,9 @@ public abstract class AkumaNoMi implements Fruit {
     public Power getPower(Integer powerId) {
         return powers.get(powerId);
     }
+
+    @Override
+    public String toString() {
+        return name + ": (id = " + id + ", type = " + type + ", powers = " + powers + ")";
+    }
 }

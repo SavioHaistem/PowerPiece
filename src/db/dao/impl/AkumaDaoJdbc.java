@@ -49,14 +49,13 @@ public class AkumaDaoJdbc implements AkumaDao {
                     "SELECT * FROM AkumaNoMis"
             );
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next() != null) {
-
+            while(resultSet.next()) {
+                akumaNoMis.add(instantiateAkuma(resultSet));
             }
-
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
-        return List.of();
+        return akumaNoMis;
     }
 
     @Override
@@ -64,13 +63,21 @@ public class AkumaDaoJdbc implements AkumaDao {
         return List.of();
     }
 
-    public AkumaNoMi instantiateAkuma(AkumaNoMi akuma) {
-        return switch (akuma.getType()) {
-            case PARAMECIA -> new Paramecia(akuma.getName(), akuma.getId());
-            case ZOAN -> new Zoan(akuma.getName(), akuma.getId());
-            case LOGIA -> new Logia(akuma.getName(), akuma.getId());
-            case SMILE -> new Smile(akuma.getName(), akuma.getId());
-            case null, default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
-        };
+    public AkumaNoMi instantiateAkuma(ResultSet resultSet) {
+        //todo: create method to instantiate powers;
+        try {
+            Integer akumaId = resultSet.getInt(1);
+            String akumaName = resultSet.getString(2);
+
+            return switch (AkumasType.valueOf(resultSet.getString(3))) {
+                case PARAMECIA -> new Paramecia(akumaName, akumaId);
+                case ZOAN -> new Zoan(akumaName, akumaId);
+                case LOGIA -> new Logia(akumaName, akumaId);
+                case SMILE -> new Smile(akumaName, akumaId);
+                case null, default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
+            };
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 }
