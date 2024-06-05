@@ -12,11 +12,13 @@ public abstract class AkumaNoMi implements Fruit {
     protected Integer id;
     protected Map<Integer, Power> powers = new HashMap<>();
 
-    public AkumaNoMi(AkumasType akumasType) {}
+    public AkumaNoMi(AkumasType akumasType) {
+        this.type = akumasType;
+    }
     public AkumaNoMi(String name,Integer id, AkumasType type) {
         this.name = name;
         this.id = id;
-        this.powers = powers;
+        this.type = type;
     }
     public AkumaNoMi(String name, Integer id, AkumasType type, Map<Integer, Power> powers) {
         this.name = name;
