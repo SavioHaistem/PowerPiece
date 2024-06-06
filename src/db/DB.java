@@ -40,19 +40,23 @@ public class DB {
         }
     }
 
-    public void closeResultSet(ResultSet resultSet) {
-        try {
-            resultSet.close();
-        } catch (SQLException e) {
-            throw new DbException(e.getMessage());
+    public static void closeResultSet(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                throw new DbException(e.getMessage());
+            }
         }
     }
 
-    public void closeStatment(Statement statement) {
-        try {
-            statement.close();
-        } catch (SQLException e) {
-            throw new DbException(e.getMessage());
+    public static void closeStatment(Statement statement) {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                throw new DbException(e.getMessage());
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package db.dao.impl;
 
+import db.DB;
 import db.dao.PowerDao;
 import entities.models.Power;
 import enums.PowerType;
@@ -38,6 +39,8 @@ public class PowerDaoJdbc implements PowerDao {
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
         }
     }
 
@@ -55,9 +58,10 @@ public class PowerDaoJdbc implements PowerDao {
             } else {
                 System.out.println("Power wasn't removed");
             }
-            statement.close();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
         }
     }
 
@@ -78,6 +82,9 @@ public class PowerDaoJdbc implements PowerDao {
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
+            DB.closeResultSet(resultSet);
         }
     }
 
