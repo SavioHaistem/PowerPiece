@@ -1,5 +1,10 @@
 package db.dao.impl;
 
-public class ChamberDaoJdbc {
+import java.sql.Connection;
 
+public class ChamberDaoJdbc {
+    Connection connection;
+    public ChamberDaoJdbc(Connection connection) {
+        this.connection = connection;
+    }
 }
