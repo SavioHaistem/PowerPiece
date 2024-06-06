@@ -1,30 +1,32 @@
 package entities.models;
 
+import enums.PowerType;
 import interfaces.Atackable;
 import interfaces.Attack;
 
 public class Power implements Attack {
-    private String name;
-    private Integer damage;
-    private Integer id;
-    private String hability;
-
-    public Power(String name, Integer id, String hability) {
-        this.name = name;
-        this.id = id;
-        this.hability = hability;
-    }
+    protected Integer id;
+    protected String name;
+    protected Integer category;
+    protected PowerType powerType;
+    protected Integer akumaID;
+    protected String description;
 
     public Power() {
-
-    };
-
-    public String getName() {
-        return name;
     }
 
-    public void setName(String name) {
+    public Power(Integer id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public Power(Integer id, String name, Integer category, PowerType powerType, Integer akumaID, String description) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.powerType = powerType;
+        this.description = description;
+        this.akumaID = akumaID;
     }
 
     public Integer getId() {
@@ -35,16 +37,48 @@ public class Power implements Attack {
         this.id = id;
     }
 
-    public String getHability() {
-        return hability;
+    public String getName() {
+        return name;
     }
 
-    public void setHability(String hability) {
-        this.hability = hability;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
+    public PowerType getPowerType() {
+        return powerType;
+    }
+
+    public void setPowerType(PowerType powerType) {
+        this.powerType = powerType;
+    }
+
+    public Integer getAkumaID() {
+        return akumaID;
+    }
+
+    public void setAkumaID(Integer akumaID) {
+        this.akumaID = akumaID;
     }
 
     @Override
     public void inflictDamage(Atackable entity, Integer damage) {
-        entity.takeDamage(damage);
+
     }
 }

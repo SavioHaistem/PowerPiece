@@ -8,31 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chamber {
-    private Integer id;
-    private String name;
-    private List<Enemy> enemies = new ArrayList<>();
-    private Integer dungeonID = null;
-    private boolean complete = false;
+    private int id;
+    private Enemy enemy;
+    private Chamber next;
 
-    public Chamber() {}
+    public Chamber() {
 
-    public Chamber(Integer id, String name) {
+    }
+    public Chamber(int id, Enemy enemy) {
         this.id = id;
-        this.name = name;
+        this.enemy = enemy;
+        this.next = null;
     }
 
-    public Chamber(Integer id, String name, List<Enemy> enemies) {
+    public Chamber(int id, Enemy enemy, Chamber next) {
         this.id = id;
-        this.name = name;
-        this.enemies = enemies;
-    }
-
-    public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
+        this.enemy = enemy;
+        this.next = next;
     }
 }
