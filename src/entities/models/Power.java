@@ -81,4 +81,9 @@ public class Power implements Attack {
     public void inflictDamage(Atackable entity, Integer damage) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Power (id: " + id + ", name: " + name + ")";
+    }
 }

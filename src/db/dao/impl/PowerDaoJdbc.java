@@ -2,12 +2,10 @@ package db.dao.impl;
 
 import db.dao.PowerDao;
 import entities.models.Power;
+import enums.PowerType;
 import exceptions.DbException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class PowerDaoJdbc implements PowerDao {
@@ -19,8 +17,9 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public void add(Power power) {
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "INSERT INTO Powers (id,name,category,powerType,akumaID,description) "
                             +   "VALUES (?,?,?,?,?,?) ",
                     Statement.RETURN_GENERATED_KEYS
@@ -31,7 +30,6 @@ public class PowerDaoJdbc implements PowerDao {
             preparedStatement.setString(4,power.getPowerType().toString());
             preparedStatement.setInt(5,power.getAkumaID());
             preparedStatement.setString(6,power.getDescription());
-
             int generatedKey = preparedStatement.executeUpdate();
             if (generatedKey > 0) {
                 System.out.println("Power: " + generatedKey + " has added in Powers list");
@@ -45,8 +43,9 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public void removeById(Integer powerID) {
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "DELETE FROM Powers WHERE id = ? "
             );
             preparedStatement.setInt(1,powerID);
@@ -63,8 +62,35 @@ public class PowerDaoJdbc implements PowerDao {
     }
 
     @Override
-    public Power findById(Integer id) {
-        return null;
+    public Power findById(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT Powers.* FROM Powers WHERE Powers.id = ? "
+            );
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return instantiatePower(resultSet);
+            } else {
+                throw new DbException("power not searched");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
+
+    public Power instantiatePower(ResultSet resultSet) {
+        try {
+            Integer id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            Integer category = resultSet.getInt("category");
+            PowerType powerType = PowerType.valueOf(resultSet.getString("powerType"));
+            Integer akumaID = resultSet.getInt("akumaID");
+            String description = resultSet.getString("description");
+            return new Power(id,name,category,powerType,akumaID,description);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override

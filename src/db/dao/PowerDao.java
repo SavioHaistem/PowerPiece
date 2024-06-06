@@ -8,6 +8,6 @@ import java.util.List;
 public interface PowerDao {
     void add(Power power);
     void removeById(Integer power);
-    Power findById(Integer id);
+    Power findById(int id);
     List<Power> findAll();
 }
