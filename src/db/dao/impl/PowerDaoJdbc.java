@@ -44,8 +44,22 @@ public class PowerDaoJdbc implements PowerDao {
     }
 
     @Override
-    public void remove(Power power) {
-
+    public void removeById(Integer powerID) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM Powers WHERE id = ? "
+            );
+            preparedStatement.setInt(1,powerID);
+            int deletedKey = preparedStatement.executeUpdate();
+            if (deletedKey > 0) {
+                System.out.println("Power: " + powerID + " has removed");
+            } else {
+                System.out.println("Power wasn't removed");
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
