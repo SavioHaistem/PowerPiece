@@ -17,20 +17,20 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public void add(Power power) {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement statement = null;
         try {
-            preparedStatement = connection.prepareStatement(
+            statement = connection.prepareStatement(
                     "INSERT INTO Powers (id,name,category,powerType,akumaID,description) "
                             +   "VALUES (?,?,?,?,?,?) ",
                     Statement.RETURN_GENERATED_KEYS
             );
-            preparedStatement.setInt(1,power.getId());
-            preparedStatement.setString(2,power.getName());
-            preparedStatement.setInt(3,power.getCategory());
-            preparedStatement.setString(4,power.getPowerType().toString());
-            preparedStatement.setInt(5,power.getAkumaID());
-            preparedStatement.setString(6,power.getDescription());
-            int generatedKey = preparedStatement.executeUpdate();
+            statement.setInt(1,power.getId());
+            statement.setString(2,power.getName());
+            statement.setInt(3,power.getCategory());
+            statement.setString(4,power.getPowerType().toString());
+            statement.setInt(5,power.getAkumaID());
+            statement.setString(6,power.getDescription());
+            int generatedKey = statement.executeUpdate();
             if (generatedKey > 0) {
                 System.out.println("Power: " + generatedKey + " has added in Powers list");
             } else {
@@ -43,19 +43,19 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public void removeById(Integer powerID) {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement statement = null;
         try {
-            preparedStatement = connection.prepareStatement(
+            statement = connection.prepareStatement(
                     "DELETE FROM Powers WHERE id = ? "
             );
-            preparedStatement.setInt(1,powerID);
-            int deletedKey = preparedStatement.executeUpdate();
+            statement.setInt(1,powerID);
+            int deletedKey = statement.executeUpdate();
             if (deletedKey > 0) {
                 System.out.println("Power: " + powerID + " has removed");
             } else {
                 System.out.println("Power wasn't removed");
             }
-            preparedStatement.close();
+            statement.close();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
@@ -63,12 +63,14 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public Power findById(int id) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
         try {
-            PreparedStatement statement = connection.prepareStatement(
+            statement = connection.prepareStatement(
                     "SELECT Powers.* FROM Powers WHERE Powers.id = ? "
             );
             statement.setInt(1,id);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return instantiatePower(resultSet);
             } else {
