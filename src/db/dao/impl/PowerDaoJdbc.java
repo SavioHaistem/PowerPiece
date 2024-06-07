@@ -7,6 +7,7 @@ import enums.PowerType;
 import exceptions.DbException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PowerDaoJdbc implements PowerDao {
@@ -104,6 +105,23 @@ public class PowerDaoJdbc implements PowerDao {
 
     @Override
     public List<Power> findAll() {
-        return List.of();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Power> powers = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Powers "
+            );
+            resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                powers.add(instantiatePower(resultSet));
+            }
+            return powers;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
+            DB.closeResultSet(resultSet);
+        }
     }
 }
