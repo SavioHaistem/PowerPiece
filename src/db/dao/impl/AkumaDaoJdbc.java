@@ -18,16 +18,24 @@ public class AkumaDaoJdbc implements AkumaDao {
 
     @Override
     public void add(AkumaNoMi akumaNoMi) {
+        PreparedStatement statement = null;
         try {
-            PreparedStatement statement = connection.prepareStatement(
+            statement = connection.prepareStatement(
                     "INSERT INTO AkumaNoMis "
                     +   "(name,type,powers) "
                     +   "VALUES (?,?,?,?) ",
                     Statement.RETURN_GENERATED_KEYS
             );
-
+            int rowEffected = statement.executeUpdate();
+            if (rowEffected > 0) {
+                System.out.println("Akumanomi: " + rowEffected + " has added");
+            } else {
+                System.err.println("Your Akumanomi has not added");
+            }
         } catch (SQLException e) {
             throw new DbException(e.getSQLState());
+        } finally {
+            DB.closeStatment(statement);
         }
     }
 
