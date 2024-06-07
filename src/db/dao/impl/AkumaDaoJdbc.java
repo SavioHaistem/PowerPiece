@@ -22,10 +22,14 @@ public class AkumaDaoJdbc implements AkumaDao {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO AkumaNoMis "
-                    +   "(name,type,powers) "
+                    +   "(id,name,type,powers) "
                     +   "VALUES (?,?,?,?) ",
                     Statement.RETURN_GENERATED_KEYS
             );
+            statement.setInt(1,akumaNoMi.getId());
+            statement.setString(2,akumaNoMi.getName());
+            statement.setString(3,akumaNoMi.getType().toString());
+            statement.setString(4,akumaNoMi.getPowers().toString());
             int rowEffected = statement.executeUpdate();
             if (rowEffected > 0) {
                 System.out.println("Akumanomi: " + rowEffected + " has added");
@@ -33,7 +37,7 @@ public class AkumaDaoJdbc implements AkumaDao {
                 System.err.println("Your Akumanomi has not added");
             }
         } catch (SQLException e) {
-            throw new DbException(e.getSQLState());
+            throw new DbException(e.getMessage());
         } finally {
             DB.closeStatment(statement);
         }
@@ -41,7 +45,25 @@ public class AkumaDaoJdbc implements AkumaDao {
 
     @Override
     public void remove(AkumaNoMi akumaNoMi) {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM AkumaNoMis WHERE id = ? AND name = ? ",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setInt(1,akumaNoMi.getId());
+            statement.setString(2,akumaNoMi.getName());
+            int rowsEffected = statement.executeUpdate();
+            if (rowsEffected > 0) {
+                System.out.println("Your Akumanomi: " + akumaNoMi.getName() + " has removed ");
+            } else {
+                System.err.println("Your Akumanomi has not removed");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
+        }
     }
 
     @Override
