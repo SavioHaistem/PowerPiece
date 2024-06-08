@@ -68,7 +68,29 @@ public class AkumaDaoJdbc implements AkumaDao {
 
     @Override
     public AkumaNoMi findById(Integer id) {
-        return null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        AkumaNoMi akumaNoMi = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM AkumaNoMis WHERE id = ? "
+            );
+            statement.setInt(1,id);
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while(resultSet.next()) {
+                    akumaNoMi = instantiateAkuma(resultSet);
+                }
+            } else {
+                throw new DbException("your akumanomi no has searched");
+            }
+            return akumaNoMi;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatment(statement);
+        }
     }
 
     @Override

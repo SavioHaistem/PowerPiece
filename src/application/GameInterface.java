@@ -13,6 +13,7 @@ public class GameInterface {
         AkumaDaoJdbc akumaDao = DaoFactory.createAkumaDao();
         AkumaNoMi zoan = new Zoan("Lepo Lepo no mi",31);
         akumaDao.add(zoan);
+        System.out.println(akumaDao.findById(31));
         akumaDao.remove(zoan);
     }
 }
