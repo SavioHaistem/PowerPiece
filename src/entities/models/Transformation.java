@@ -16,6 +16,10 @@ public class Transformation extends Entity {
         return player;
     }
 
+    public static Transformation instantiateForm(Map<Integer, Power> powerMap) {
+        return new Transformation();
+    }
+
     @Override
     public String say(String sayed) {
         return sayed;

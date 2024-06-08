@@ -2,16 +2,21 @@ package db.dao.impl;
 
 import db.DB;
 import db.dao.AkumaDao;
+import db.dao.DaoFactory;
+import db.dao.PowerDao;
 import entities.akumanomis.*;
+import entities.models.Power;
+import entities.models.Transformation;
 import enums.AkumasType;
 import exceptions.DbException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AkumaDaoJdbc implements AkumaDao {
     Connection connection = null;
+    PowerDao powerDao = DaoFactory.createPowerDao();
     public AkumaDaoJdbc(Connection connection) {
         this.connection = connection;
     }
@@ -112,18 +117,45 @@ public class AkumaDaoJdbc implements AkumaDao {
 
     @Override
     public List<AkumaNoMi> findByType(AkumasType type) {
-        return List.of();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<AkumaNoMi> akumaNoMis = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM AkumaNoMis WHERE type = ? "
+            );
+            statement.setString(1,type.toString());
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while(resultSet.next()) {
+                    akumaNoMis.add(instantiateAkuma(resultSet));
+                }
+                return akumaNoMis;
+            } else {
+                throw new DbException("no has found any AkumaNoMi with this status ");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatment(statement);
+        }
     }
 
     public AkumaNoMi instantiateAkuma(ResultSet resultSet) {
-        //todo: create method to instantiate powers;
+        //TODO: create method to instantiate powers;
+        //TODO: find Zoan transformation method;
         try {
             Integer akumaId = resultSet.getInt(1);
             String akumaName = resultSet.getString(2);
-
+            String[] powersIDs = resultSet.getString(4).split(",");
+            Map<Integer,Power> powerMap = new HashMap<>();
+            Arrays.stream(powersIDs).forEach(powerId -> {
+                powerMap.put(Integer.parseInt(powerId),powerDao.findById(Integer.parseInt(powerId)));
+            });
             return switch (AkumasType.valueOf(resultSet.getString(3))) {
-                case PARAMECIA -> new Paramecia(akumaName, akumaId);
-                case ZOAN -> new Zoan(akumaName, akumaId);
+                case PARAMECIA -> new Paramecia(akumaName, akumaId,powerMap);
+                case ZOAN -> new Zoan(akumaName,akumaId,Transformation.instantiateForm(powerMap));
                 case LOGIA -> new Logia(akumaName, akumaId);
                 case SMILE -> new Smile(akumaName, akumaId);
                 case null, default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
