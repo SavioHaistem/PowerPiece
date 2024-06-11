@@ -13,7 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 public class TransformationDaoJdbc implements TransformationDao {
-    Connection connection = DB.getConnection();
+    Connection connection = null;
+
+    public TransformationDaoJdbc(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public void add(Transformation form) {
         PreparedStatement statement = null;
