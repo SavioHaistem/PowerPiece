@@ -27,6 +27,8 @@ public class TransformationDaoJdbc implements TransformationDao {
             statement.setString(4,form.getPowers().toString());
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
         }
     }
 
