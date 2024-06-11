@@ -46,6 +46,16 @@ public abstract class Entity implements Atackable {
         return lifeBar.getCurrentLife() > 0;
     }
 
+    public String getPowersString() {
+        StringBuilder powerString = new StringBuilder();
+        for (Power power : powers.values()) {
+            powerString.append(power.getId());
+            powerString.append(',');
+        }
+        powerString.deleteCharAt(powerString.lastIndexOf(","));
+        return powerString.toString();
+    }
+
     public void setLifeBar(LifeBar lifeBar) {
         this.lifeBar = lifeBar;
     }
