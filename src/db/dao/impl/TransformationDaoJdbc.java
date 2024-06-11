@@ -11,6 +11,7 @@ import services.InstantiateFromString;
 
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -102,7 +103,25 @@ public class TransformationDaoJdbc implements TransformationDao {
 
     @Override
     public List<Transformation> findAll() {
-        return List.of();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Transformation> transformations = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Transformations "
+            );
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while(resultSet.next()) {
+                    transformations.add(instantiateForm(resultSet));
+                }
+            } else {
+                throw new DbException("any transformation was found");
+            }
+            return transformations;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
