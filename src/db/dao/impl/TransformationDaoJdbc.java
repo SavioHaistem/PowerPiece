@@ -5,10 +5,7 @@ import db.dao.TransformationDao;
 import entities.models.Transformation;
 import exceptions.DbException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class TransformationDaoJdbc implements TransformationDao {
@@ -19,12 +16,19 @@ public class TransformationDaoJdbc implements TransformationDao {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO Transformations (id, name, life, powers) "
-                    +   "VALUES (?,?,?,?) "
+                    +   "VALUES (?,?,?,?) ",
+                    Statement.RETURN_GENERATED_KEYS
             );
             statement.setInt(1,form.getEntityId());
             statement.setString(2, form.getName());
             statement.setInt(3,form.getLifeBar().getMaxLife());
             statement.setString(4,form.getPowers().toString());
+            int affectedRow = statement.executeUpdate();
+            if (affectedRow > 0) {
+                System.out.println("transformation: " + form.getName() + " has added");
+            } else {
+                throw new DbException("transformations: " + form.getName() + " no has added");
+            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
