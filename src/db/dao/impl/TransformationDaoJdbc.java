@@ -1,6 +1,7 @@
 package db.dao.impl;
 
 import db.DB;
+import db.dao.DaoFactory;
 import db.dao.TransformationDao;
 import entities.models.LifeBar;
 import entities.models.Power;
@@ -8,6 +9,7 @@ import entities.models.Transformation;
 import exceptions.DbException;
 import services.InstantiateFromString;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +54,7 @@ public class TransformationDaoJdbc implements TransformationDao {
         Transformation form = null;
         try {
             statement = connection.prepareStatement(
-                    "SELECT FROM Transformations WHERE id = ? "
+                    "SELECT * FROM Transformations WHERE id = ? "
             );
             statement.setInt(1,id);
             resultSet = statement.executeQuery();
@@ -72,8 +74,30 @@ public class TransformationDaoJdbc implements TransformationDao {
 
     @Override
     public Transformation findByForm(Transformation form) {
-
-        return null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Transformations WHERE id = ? AND name = ? "
+            );
+            statement.setInt(1,form.getEntityId());
+            statement.setString(2,form.getName());
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                Transformation transformation = null;
+                while (resultSet.next()) {
+                    transformation = instantiateForm(resultSet);
+                }
+                return transformation;
+            } else {
+                throw new DbException("Transformations: " + form + " was not found");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatment(statement);
+        }
     }
 
     @Override
