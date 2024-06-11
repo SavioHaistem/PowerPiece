@@ -2,11 +2,15 @@ package db.dao.impl;
 
 import db.DB;
 import db.dao.TransformationDao;
+import entities.models.LifeBar;
+import entities.models.Power;
 import entities.models.Transformation;
 import exceptions.DbException;
+import services.InstantiateFromString;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Map;
 
 public class TransformationDaoJdbc implements TransformationDao {
     Connection connection = DB.getConnection();
@@ -38,11 +42,32 @@ public class TransformationDaoJdbc implements TransformationDao {
 
     @Override
     public Transformation findById(int id) {
-        return null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Transformation form = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT FROM Transformations WHERE id = ? "
+            );
+            statement.setInt(1,id);
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    form = instantiateForm(resultSet);
+                }
+            }
+            return form;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatment(statement);
+        }
     }
 
     @Override
     public Transformation findByForm(Transformation form) {
+
         return null;
     }
 
@@ -58,6 +83,14 @@ public class TransformationDaoJdbc implements TransformationDao {
 
     @Override
     public Transformation instantiateForm(ResultSet resultSet) {
-        return null;
+        try {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            LifeBar lifeBar = new LifeBar(resultSet.getInt("life"));
+            Map<Integer, Power> powerMap = InstantiateFromString.powerMap(resultSet.getString("powers"));
+            return new Transformation(id,name,lifeBar,null,powerMap);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 }

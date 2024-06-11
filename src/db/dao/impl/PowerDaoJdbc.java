@@ -103,6 +103,16 @@ public class PowerDaoJdbc implements PowerDao {
         }
     }
 
+    public void closeConnection() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
+
     @Override
     public List<Power> findAll() {
         PreparedStatement statement = null;
