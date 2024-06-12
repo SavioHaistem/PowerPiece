@@ -30,7 +30,7 @@ public class TransformationDaoJdbc implements TransformationDao {
             statement.setInt(1,form.getEntityId());
             statement.setString(2, form.getName());
             statement.setInt(3,form.getLifeBar().getMaxLife());
-            statement.setString(4,form.getPowers().toString());
+            statement.setString(4,form.getPowersString());
             int affectedRow = statement.executeUpdate();
             if (affectedRow > 0) {
                 System.out.println("transformation: " + form.getName() + " has added");
@@ -122,7 +122,22 @@ public class TransformationDaoJdbc implements TransformationDao {
 
     @Override
     public void deleteById(int id) {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM Transformations WHERE id = ? ",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setInt(1,id);
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Transformation id: " + id + " has deleted");
+            } else {
+                throw new DbException("Transformation id: " + id + " no has deleted");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
