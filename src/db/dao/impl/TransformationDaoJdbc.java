@@ -1,15 +1,11 @@
 package db.dao.impl;
-
 import db.DB;
-import db.dao.DaoFactory;
 import db.dao.TransformationDao;
 import entities.models.LifeBar;
 import entities.models.Power;
 import entities.models.Transformation;
 import exceptions.DbException;
 import services.InstantiateFromString;
-
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

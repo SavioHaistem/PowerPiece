@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class InstantiateFromString {
     public static Map<Integer, Power> powerMap(String stringIDs) {
-        PowerDaoJdbc powerDao = DaoFactory.createPowerDao();
+        PowerDao powerDao = DaoFactory.createPowerDao();
         Map<Integer,Power> powerMap = new HashMap<>();
         String[] powersIds = stringIDs.split(",");
 
@@ -20,7 +20,6 @@ public class InstantiateFromString {
             powerMap.put(intID,powerDao.findById(intID));
         }
 
-        powerDao.closeConnection();
         return powerMap;
     }
 }

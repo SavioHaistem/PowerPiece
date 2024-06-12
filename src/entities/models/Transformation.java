@@ -24,4 +24,9 @@ public class Transformation extends Entity {
     public String say(String sayed) {
         return sayed;
     }
+
+    @Override
+    public String toString() {
+        return "Form: [" + name + ", " + entityId + "]";
+    }
 }
