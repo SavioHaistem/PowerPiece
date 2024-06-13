@@ -12,7 +12,6 @@ import exceptions.DbException;
 
 import java.sql.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AkumaDaoJdbc implements AkumaDao {
     Connection connection = null;
@@ -104,7 +103,7 @@ public class AkumaDaoJdbc implements AkumaDao {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM AkumaNoMis"
-            );
+            );  
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()) {
                 akumaNoMis.add(instantiateAkuma(resultSet));
@@ -143,8 +142,6 @@ public class AkumaDaoJdbc implements AkumaDao {
     }
 
     public AkumaNoMi instantiateAkuma(ResultSet resultSet) {
-        //TODO: create method to instantiate powers;
-        //TODO: find Zoan transformation method;
         try {
             Integer akumaId = resultSet.getInt(1);
             String akumaName = resultSet.getString(2);
