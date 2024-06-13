@@ -30,7 +30,7 @@ public class TransformationDaoJdbc implements TransformationDao {
             statement.setInt(1,form.getEntityId());
             statement.setString(2, form.getName());
             statement.setInt(3,form.getLifeBar().getMaxLife());
-            statement.setString(4,form.getPowersString());
+            statement.setString(4,form.getPowersIDs());
             int affectedRow = statement.executeUpdate();
             if (affectedRow > 0) {
                 System.out.println("transformation: " + form.getName() + " has added");

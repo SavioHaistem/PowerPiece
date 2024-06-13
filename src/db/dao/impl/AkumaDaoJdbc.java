@@ -4,10 +4,8 @@ import db.DB;
 import db.dao.AkumaDao;
 import db.dao.DaoFactory;
 import db.dao.PowerDao;
-import db.dao.TransformationDao;
 import entities.akumanomis.*;
 import entities.models.Power;
-import entities.models.Transformation;
 import enums.AkumasType;
 import exceptions.DbException;
 
