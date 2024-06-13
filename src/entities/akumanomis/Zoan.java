@@ -13,8 +13,17 @@ public class Zoan extends AkumaNoMi {
     public Zoan(String name, Integer id) {
         super(name,id,AkumasType.ZOAN);
     }
-    public Zoan(String name, Integer id, Transformation transformation) {
-        super(name,id,AkumasType.ZOAN,transformation.getPowers());
+    public Zoan(String name, Integer id, Transformation transformation, Power transformPower) {
+        super(name,id,AkumasType.ZOAN);
+        this.powers.put(transformPower.getId(),transformPower);
         this.form = transformation;
+    }
+
+    public Transformation getForm() {
+        return form;
+    }
+
+    public void setForm(Transformation form) {
+        this.form = form;
     }
 }

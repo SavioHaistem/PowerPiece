@@ -20,4 +20,15 @@ public class Player extends Entity {
     public String say(String sayed) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder powerList = new StringBuilder();
+        for (Power power : powers.values()) {
+            powerList.append("(").append(power.getId()).append(") ")
+                    .append(power.getName()).append(": ")
+                    .append(power.getDescription()).append('\n');
+        }
+        return super.toString() + powerList.toString();
+    }
 }

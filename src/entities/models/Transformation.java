@@ -16,7 +16,7 @@ public class Transformation extends Entity {
         return player;
     }
 
-    public static Transformation instantiateForm(Map<Integer, Power> powerMap) {
+    public static Transformation instantiateForm(Transformation form,Map<Integer, Power> powerMap) {
         return new Transformation();
     }
 

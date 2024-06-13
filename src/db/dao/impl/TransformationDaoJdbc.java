@@ -60,6 +60,7 @@ public class TransformationDaoJdbc implements TransformationDao {
                     form = instantiateForm(resultSet);
                 }
             }
+            System.out.println(form.getPowers());
             return form;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());

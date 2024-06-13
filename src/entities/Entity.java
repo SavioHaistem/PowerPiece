@@ -95,14 +95,13 @@ public abstract class Entity implements Atackable {
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
-        entity.append("==================").append('\n');
-        entity.append(entityId).append('\n');
-        entity.append(name).append('\n');
+        entity.append("=========================").append('\n');
+        entity.append(name).append(" (").append(entityId).append(")").append('\n');
         for (Character health : lifeBar.getLifeBar()) {
             entity.append(health);
         }
         entity.append('\n');
-        entity.append("==================").append('\n');
+        entity.append("=========================").append('\n');
         return entity.toString();
     }
 
