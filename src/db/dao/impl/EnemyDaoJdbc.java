@@ -17,7 +17,7 @@ public class EnemyDaoJdbc implements EnemyDao {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO Enemies (id,name,life,powers,category) "
-                    +   "VALUES (?,?,?,?,?)",
+                    +   "VALUES (?,?,?,?,?) ",
                     Statement.RETURN_GENERATED_KEYS
             );
             statement.setInt(1,enemy.getEntityId());
@@ -25,6 +25,12 @@ public class EnemyDaoJdbc implements EnemyDao {
             statement.setInt(3,enemy.getLifeBar().getMaxLife());
             statement.setString(4,enemy.getPowersIDs());
             statement.setInt(5,enemy.getEnemyCategory());
+            int affectedRow = statement.executeUpdate();
+            if (affectedRow > 0) {
+                System.out.println("enemy: " + enemy.getName() + ", has added");
+            } else {
+                throw new DbException("enemy: " + enemy.getName() + "has not added");
+            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
