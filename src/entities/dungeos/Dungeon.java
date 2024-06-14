@@ -4,7 +4,7 @@ import entities.enemies.Enemy;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public abstract class Dungeon {
+public class Dungeon {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
