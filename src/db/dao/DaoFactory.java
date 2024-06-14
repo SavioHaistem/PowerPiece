@@ -1,9 +1,7 @@
 package db.dao;
 import db.DB;
-import db.dao.impl.AkumaDaoJdbc;
-import db.dao.impl.ChamberDaoJdbc;
-import db.dao.impl.PowerDaoJdbc;
-import db.dao.impl.TransformationDaoJdbc;
+import db.dao.impl.*;
+import entities.enemies.Enemy;
 
 //TODO: game party method;
 //TODO: auto instance dungeon method;
@@ -23,6 +21,10 @@ public class DaoFactory {
 
     public static ChamberDaoJdbc createChamberDao() {
         return new ChamberDaoJdbc(DB.getConnection());
+    }
+
+    public static EnemyDaoJdbc createEnemyDao() {
+        return new EnemyDaoJdbc(DB.getConnection());
     }
 
     public static TransformationDaoJdbc createTransformationDaoJdbc() {

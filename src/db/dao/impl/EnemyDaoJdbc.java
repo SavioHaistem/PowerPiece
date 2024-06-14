@@ -9,7 +9,11 @@ import java.sql.*;
 import java.util.List;
 
 public class EnemyDaoJdbc implements EnemyDao {
-    Connection connection = DB.getConnection();
+    Connection connection = null;
+
+    public EnemyDaoJdbc(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public void add(Enemy enemy) {
