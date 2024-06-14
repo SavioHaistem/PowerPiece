@@ -46,7 +46,7 @@ public abstract class Entity implements Atackable {
         return lifeBar.getCurrentLife() > 0;
     }
 
-    public String getPowersString() {
+    public String getPowersIDs() {
         StringBuilder powerString = new StringBuilder();
         for (Power power : powers.values()) {
             powerString.append(power.getId());

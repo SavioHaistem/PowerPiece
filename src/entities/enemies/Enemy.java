@@ -7,7 +7,7 @@ import entities.models.Power;
 import java.util.Map;
 
 public class Enemy extends Entity {
-    private Integer enemyCategory;
+    private int enemyCategory;
 
     // category Boss: 4,
     // category Epic: 3,
@@ -18,12 +18,14 @@ public class Enemy extends Entity {
 
     }
 
-    public Enemy(Integer entityId, String name, LifeBar lifeBar) {
+    public Enemy(Integer entityId, String name, LifeBar lifeBar, int enemyCategory) {
         super(entityId, name, lifeBar);
+        this.enemyCategory = enemyCategory;
     }
 
-    public Enemy(Integer entityId, String name, LifeBar lifeBar, Map<Integer, Power> powers) {
+    public Enemy(Integer entityId, String name, LifeBar lifeBar, Map<Integer, Power> powers, int enemyCategory) {
         super(entityId, name, lifeBar, powers);
+        this.enemyCategory = enemyCategory;
     }
 
     public Integer getEnemyCategory() {
