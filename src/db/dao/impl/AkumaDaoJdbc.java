@@ -151,7 +151,7 @@ public class AkumaDaoJdbc implements AkumaDao {
             });
             return switch (AkumasType.valueOf(resultSet.getString(3))) {
                 case PARAMECIA -> new Paramecia(akumaName, akumaId,powerMap);
-                case ZOAN -> new Zoan(akumaName,akumaId,DaoFactory.createTransformationDaoJdbc()
+                case ZOAN -> new Zoan(akumaName,akumaId,DaoFactory.createFormDao()
                         .findById(Integer.parseInt(powersIDs[0])), //powersIDs[0] = first id from this AkumaNoMi;
                         powerMap.get(Integer.parseInt(powersIDs[0]))); //get the transform active power and return only this for user;
                 case LOGIA -> new Logia(akumaName, akumaId, powerMap);
