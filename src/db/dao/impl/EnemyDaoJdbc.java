@@ -3,10 +3,16 @@ package db.dao.impl;
 import db.DB;
 import db.dao.EnemyDao;
 import entities.enemies.Enemy;
+import entities.models.LifeBar;
+import entities.models.Power;
 import exceptions.DbException;
+import services.InstantiateFromString;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EnemyDaoJdbc implements EnemyDao {
     Connection connection = null;
@@ -95,6 +101,19 @@ public class EnemyDaoJdbc implements EnemyDao {
 
     @Override
     public Enemy instantiateEnemy(ResultSet resultSet) {
-        return null;
+        try {
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            LifeBar lifeBar = new LifeBar(resultSet.getInt(3));
+            String powerIDs = resultSet.getString(4);
+            Map<Integer, Power> powers = null;
+            if (powerIDs != null) {
+                powers = InstantiateFromString.powerMap(resultSet.getString(4));
+            }
+            int enemyCategory = resultSet.getInt(5);
+            return new Enemy(id,name,lifeBar,powers,enemyCategory);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 }
