@@ -42,7 +42,24 @@ public class EnemyDaoJdbc implements EnemyDao {
 
     @Override
     public void removeById(int id) {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM Enemies WHERE id = ? ",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setInt(1,id);
+            int rowDeleted = statement.executeUpdate();
+            if (rowDeleted > 0) {
+                System.out.println("the enemy of id: " + id + " has removed");
+            } else {
+                throw new DbException("the enemy has not removed");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatment(statement);
+        }
     }
 
     @Override

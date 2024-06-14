@@ -48,9 +48,13 @@ public abstract class Entity implements Atackable {
 
     public String getPowersIDs() {
         StringBuilder powerString = new StringBuilder();
-        for (Power power : powers.values()) {
-            powerString.append(power.getId());
-            powerString.append(',');
+        if (!powers.isEmpty()) {
+            for (Power power : powers.values()) {
+                powerString.append(power.getId());
+                powerString.append(',');
+            }
+        } else {
+            return null;
         }
         powerString.deleteCharAt(powerString.lastIndexOf(","));
         return powerString.toString();
