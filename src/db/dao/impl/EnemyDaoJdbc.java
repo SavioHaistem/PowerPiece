@@ -108,7 +108,7 @@ public class EnemyDaoJdbc implements EnemyDao {
             String powerIDs = resultSet.getString(4);
             Map<Integer, Power> powers = null;
             if (powerIDs != null) {
-                powers = InstantiateFromString.powerMap(resultSet.getString(4));
+                powers = InstantiateFromString.powerMap(powerIDs);
             }
             int enemyCategory = resultSet.getInt(5);
             return new Enemy(id,name,lifeBar,powers,enemyCategory);
