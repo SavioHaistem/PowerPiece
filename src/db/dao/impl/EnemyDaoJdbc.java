@@ -64,7 +64,28 @@ public class EnemyDaoJdbc implements EnemyDao {
 
     @Override
     public Enemy findById(int id) {
-        return null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Enemies WHERE id = ? "
+            );
+            statement.setInt(1,id);
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                Enemy enemy = null;
+                while (resultSet.next()) {
+                    enemy = instantiateEnemy(resultSet);
+                }
+                return enemy;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatment(statement);
+        }
     }
 
     @Override
