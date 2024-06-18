@@ -9,10 +9,7 @@ import exceptions.DbException;
 import services.InstantiateFromString;
 
 import java.sql.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EnemyDaoJdbc implements EnemyDao {
     Connection connection = null;
@@ -96,7 +93,25 @@ public class EnemyDaoJdbc implements EnemyDao {
 
     @Override
     public List<Enemy> findAll() {
-        return List.of();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Enemy> enemies = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Enemies "
+            );
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while(resultSet.next()) {
+                    enemies.add(instantiateEnemy(resultSet));
+                }
+            } else {
+                throw new DbException("any enemy returned");
+            }
+            return enemies;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
