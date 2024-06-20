@@ -1,5 +1,6 @@
 package com.PowerPiece.db.dao.impl;
 
+import com.PowerPiece.db.DB;
 import com.PowerPiece.db.dao.DungeonDao;
 import com.PowerPiece.entities.dungeos.Dungeon;
 import com.PowerPiece.exceptions.DbException;
@@ -39,8 +40,18 @@ public class DungeonDaoJdbc implements DungeonDao {
     }
 
     @Override
-    public void remove(Dungeon dungeon) {
-
+    public void remove(int id) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "REMOVE FROM Dungeons WHERE id = ?"
+            );
+            statement.setInt(1,id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatment(statement);
+        }
     }
 
     @Override
