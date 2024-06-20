@@ -17,7 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e8c173d2-4ab8-47b3-9db7-f1df52fa4d65">
-      <console name="Connection" type="STANDARD" schema="akumas" session="Main"><![CDATA[SELECT * FROM "AkumaNoMis";]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
