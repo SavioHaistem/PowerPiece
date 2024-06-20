@@ -1,14 +1,14 @@
 package com.PowerPiece.db.dao.impl;
 
 import com.PowerPiece.db.DB;
+import com.PowerPiece.db.dao.DaoFactory;
 import com.PowerPiece.db.dao.DungeonDao;
+import com.PowerPiece.db.dao.EnemyDao;
 import com.PowerPiece.entities.dungeos.Dungeon;
 import com.PowerPiece.exceptions.DbException;
+import com.PowerPiece.services.InstantiateFromString;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class DungeonDaoJdbc implements DungeonDao {
@@ -56,7 +56,36 @@ public class DungeonDaoJdbc implements DungeonDao {
 
     @Override
     public Dungeon findById(Integer id) {
-        return null;
+        Dungeon dungeon = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Dungeons WHERE id = ? "
+            );
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                     dungeon = instantiateDungeon(resultSet);
+                }
+            }
+            return dungeon;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Dungeon instantiateDungeon(ResultSet resultSet) {
+        try {
+            EnemyDao enemyDao = DaoFactory.createEnemyDao();
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            int endbossID = resultSet.getInt(3);
+            String enemiesID = resultSet.getString(4);
+            return new Dungeon(id,name, enemyDao.findById(endbossID),InstantiateFromString.enemyList(enemiesID,enemyDao));
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
