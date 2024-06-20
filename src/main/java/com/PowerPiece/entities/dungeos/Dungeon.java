@@ -2,13 +2,15 @@ package com.PowerPiece.entities.dungeos;
 import com.PowerPiece.entities.enemies.Enemy;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class Dungeon {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
-    protected Deque<Chamber> instances = new ArrayDeque<>();
+    protected List<Enemy> enemies = new ArrayList<>();
 
     public Dungeon() {
     }
@@ -18,25 +20,29 @@ public class Dungeon {
         this.name = name;
     }
 
-    public Dungeon(Integer id, String name, Deque<Chamber> instances) {
+    public Dungeon(Integer id, String name, List<Enemy> enemies) {
         this.id = id;
         this.name = name;
-        this.instances = instances;
+        this.enemies = enemies;
     }
 
-    public Dungeon(Integer id, String name, Enemy endBoss, Deque<Chamber> instances) {
+    public Dungeon(Integer id, String name, Enemy endBoss, List<Enemy> enemies) {
         this.id = id;
         this.name = name;
         this.endBoss = endBoss;
-        this.instances = instances;
+        this.enemies = enemies;
     }
 
     public boolean isActive() {
-        return !instances.isEmpty();
+        return !enemies.isEmpty();
+    }
+
+    public Enemy endBoss() {
+        return this.endBoss;
     }
 
     public void quitDungeon() {
-        this.instances = new ArrayDeque<>();
+        this.enemies = null;
     }
 
     public Integer getId() {
@@ -64,12 +70,12 @@ public class Dungeon {
         this.endBoss = endBoss;
     }
 
-    public Deque<Chamber> getInstances() {
-        return instances;
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
 
-    public void setInstances(Deque<Chamber> instances) {
-        this.instances = instances;
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
     }
 
     @Override
