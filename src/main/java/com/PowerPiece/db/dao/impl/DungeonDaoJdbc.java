@@ -2,8 +2,12 @@ package com.PowerPiece.db.dao.impl;
 
 import com.PowerPiece.db.dao.DungeonDao;
 import com.PowerPiece.entities.dungeos.Dungeon;
+import com.PowerPiece.exceptions.DbException;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class DungeonDaoJdbc implements DungeonDao {
@@ -16,7 +20,22 @@ public class DungeonDaoJdbc implements DungeonDao {
 
     @Override
     public void add(Dungeon dungeon) {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Dungeons (id,name,endbossID,enemiesID) "
+                    +   "VALUES (?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            int generatedRow = statement.executeUpdate();
+            if (generatedRow > 0) {
+                System.out.println("your Dungeon has added");
+            } else {
+                System.out.println("add dungeon error");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
