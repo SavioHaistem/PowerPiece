@@ -3,6 +3,8 @@ import com.PowerPiece.db.dao.impl.*;
 import com.PowerPiece.db.DB;
 import com.PowerPiece.db.dao.impl.*;
 
+import java.sql.Connection;
+
 //TODO: game party method;
 //TODO: auto instance dungeon method;
 //TODO: create DungeonsDAO;
@@ -29,5 +31,9 @@ public class DaoFactory {
 
     public static TransformationDaoJdbc createFormDao() {
         return new TransformationDaoJdbc(DB.getConnection());
+    }
+
+    public static DungeonDao createDungeonDao() {
+        return new DungeonDaoJdbc(DB.getConnection());
     }
 }
