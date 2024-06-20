@@ -40,7 +40,7 @@ public class DungeonDaoJdbc implements DungeonDao {
     }
 
     @Override
-    public void remove(int id) {
+    public void removeById(int id) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
