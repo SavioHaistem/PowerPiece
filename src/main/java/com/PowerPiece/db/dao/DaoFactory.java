@@ -21,10 +21,6 @@ public class DaoFactory {
         return new PowerDaoJdbc(DB.getConnection());
     }
 
-    public static ChamberDaoJdbc createChamberDao() {
-        return new ChamberDaoJdbc(DB.getConnection());
-    }
-
     public static EnemyDaoJdbc createEnemyDao() {
         return new EnemyDaoJdbc(DB.getConnection());
     }

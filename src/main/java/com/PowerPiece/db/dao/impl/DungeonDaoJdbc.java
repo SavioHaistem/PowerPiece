@@ -9,6 +9,7 @@ import com.PowerPiece.exceptions.DbException;
 import com.PowerPiece.services.InstantiateFromString;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DungeonDaoJdbc implements DungeonDao {
@@ -92,7 +93,7 @@ public class DungeonDaoJdbc implements DungeonDao {
     public List<Dungeon> findAll() {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Dungeon> dungeons = null;
+        List<Dungeon> dungeons = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
                     "SELECT * FROM Dungeons "
@@ -100,7 +101,8 @@ public class DungeonDaoJdbc implements DungeonDao {
             resultSet = statement.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    dungeons.add(instantiateDungeon(resultSet));
+                    Dungeon dungeon = instantiateDungeon(resultSet);
+                    dungeons.add(dungeon);
                 }
                 return dungeons;
             } else {
