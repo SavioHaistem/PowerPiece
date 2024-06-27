@@ -90,6 +90,24 @@ public class DungeonDaoJdbc implements DungeonDao {
 
     @Override
     public List<Dungeon> findAll() {
-        return List.of();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Dungeon> dungeons = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT * FROM Dungeons "
+            );
+            resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    dungeons.add(instantiateDungeon(resultSet));
+                }
+                return dungeons;
+            } else {
+                throw new DbException("no Dungeons registered");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 }

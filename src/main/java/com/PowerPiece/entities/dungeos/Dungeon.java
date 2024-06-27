@@ -45,6 +45,10 @@ public class Dungeon {
         this.enemies = null;
     }
 
+    public void removeEnemy(int id) {
+        this.enemies.removeIf(enemy -> enemy.getEntityId() == id);
+    }
+
     public Integer getId() {
 
         return id;

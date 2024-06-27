@@ -157,7 +157,7 @@ public class AkumaDaoJdbc implements AkumaDao {
                         powerMap.get(Integer.parseInt(powersIDs[0]))); //get the transform active power and return only this for user;
                 case LOGIA -> new Logia(akumaName, akumaId, powerMap);
                 case SMILE -> new Smile(akumaName, akumaId);
-                case null, default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
+                default -> throw new DbException("No valid AkumaNoMi type in instantiateAkuma");
             };
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
