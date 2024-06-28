@@ -5,7 +5,6 @@ import com.PowerPiece.db.dao.AkumaDao;
 import com.PowerPiece.db.dao.DaoFactory;
 import com.PowerPiece.db.dao.PowerDao;
 import com.PowerPiece.entities.akumanomis.*;
-import com.PowerPiece.entities.akumanomis.*;
 import com.PowerPiece.entities.models.Power;
 import com.PowerPiece.enums.AkumasType;
 import com.PowerPiece.exceptions.DbException;
@@ -98,20 +97,21 @@ public class AkumaDaoJdbc implements AkumaDao {
     }
 
     @Override
-    public List<AkumaNoMi> findAll() {
-        List<AkumaNoMi> akumaNoMis = new ArrayList<>();
+    public Map<Integer, AkumaNoMi> findAll() {
+        Map<Integer,AkumaNoMi> akumaNoMis = new HashMap<>();
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM AkumaNoMis"
             );  
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()) {
-                akumaNoMis.add(instantiateAkuma(resultSet));
+                AkumaNoMi akumaNoMi = instantiateAkuma(resultSet);
+                akumaNoMis.put(akumaNoMi.getId(), akumaNoMi);
             }
+            return akumaNoMis;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
-        return akumaNoMis;
     }
 
     @Override

@@ -7,8 +7,8 @@ import com.PowerPiece.enums.PowerType;
 import com.PowerPiece.exceptions.DbException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PowerDaoJdbc implements PowerDao {
     Connection connection;
@@ -104,17 +104,18 @@ public class PowerDaoJdbc implements PowerDao {
     }
 
     @Override
-    public List<Power> findAll() {
+    public Map<Integer, Power> findAll() {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Power> powers = new ArrayList<>();
+        Map<Integer,Power> powers = new HashMap<>();
         try {
             statement = connection.prepareStatement(
                     "SELECT * FROM Powers "
             );
             resultSet = statement.executeQuery();
             while(resultSet.next()) {
-                powers.add(instantiatePower(resultSet));
+                Power power = instantiatePower(resultSet);
+                powers.put(power.getId(),power);
             }
             return powers;
         } catch (SQLException e) {

@@ -8,7 +8,7 @@ import com.PowerPiece.exceptions.DbException;
 import com.PowerPiece.services.InstantiateFromString;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TransformationDaoJdbc implements TransformationDao {
@@ -60,7 +60,6 @@ public class TransformationDaoJdbc implements TransformationDao {
                     form = instantiateForm(resultSet);
                 }
             }
-            System.out.println(form.getPowers());
             return form;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -99,10 +98,10 @@ public class TransformationDaoJdbc implements TransformationDao {
     }
 
     @Override
-    public List<Transformation> findAll() {
+    public Map<Integer, Transformation> findAll() {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Transformation> transformations = new ArrayList<>();
+        Map<Integer,Transformation> transformations = new HashMap<>();
         try {
             statement = connection.prepareStatement(
                     "SELECT * FROM Transformations "
@@ -110,7 +109,8 @@ public class TransformationDaoJdbc implements TransformationDao {
             resultSet = statement.executeQuery();
             if (resultSet != null) {
                 while(resultSet.next()) {
-                    transformations.add(instantiateForm(resultSet));
+                    Transformation form = instantiateForm(resultSet);
+                    transformations.put(form.getEntityId(),form);
                 }
             } else {
                 throw new DbException("any transformation was found");

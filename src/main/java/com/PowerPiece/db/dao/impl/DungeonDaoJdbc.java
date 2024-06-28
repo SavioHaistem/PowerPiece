@@ -9,8 +9,8 @@ import com.PowerPiece.exceptions.DbException;
 import com.PowerPiece.services.InstantiateFromString;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DungeonDaoJdbc implements DungeonDao {
     private Connection connection = null;
@@ -90,10 +90,10 @@ public class DungeonDaoJdbc implements DungeonDao {
     }
 
     @Override
-    public List<Dungeon> findAll() {
+    public Map<Integer, Dungeon> findAll() {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Dungeon> dungeons = new ArrayList<>();
+        Map<Integer,Dungeon> dungeons = new HashMap<>();
         try {
             statement = connection.prepareStatement(
                     "SELECT * FROM Dungeons "
@@ -102,7 +102,7 @@ public class DungeonDaoJdbc implements DungeonDao {
             if (resultSet != null) {
                 while (resultSet.next()) {
                     Dungeon dungeon = instantiateDungeon(resultSet);
-                    dungeons.add(dungeon);
+                    dungeons.put(dungeon.getId(),dungeon);
                 }
                 return dungeons;
             } else {

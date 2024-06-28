@@ -92,10 +92,10 @@ public class EnemyDaoJdbc implements EnemyDao {
     }
 
     @Override
-    public List<Enemy> findAll() {
+    public Map<Integer, Enemy> findAll() {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Enemy> enemies = new ArrayList<>();
+        Map<Integer,Enemy> enemies = new HashMap<>();
         try {
             statement = connection.prepareStatement(
                     "SELECT * FROM Enemies "
@@ -103,7 +103,8 @@ public class EnemyDaoJdbc implements EnemyDao {
             resultSet = statement.executeQuery();
             if (resultSet != null) {
                 while(resultSet.next()) {
-                    enemies.add(instantiateEnemy(resultSet));
+                    Enemy enemy = instantiateEnemy(resultSet);
+                    enemies.put(enemy.getEntityId(),enemy);
                 }
             } else {
                 throw new DbException("any enemy returned");
