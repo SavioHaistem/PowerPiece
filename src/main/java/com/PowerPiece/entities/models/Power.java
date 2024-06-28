@@ -84,6 +84,10 @@ public class Power implements Attack {
 
     @Override
     public String toString() {
-        return "Power (id: " + id + ", name: " + name + ", akuma: " + akumaID + " )";
+        return "Power (name: " + name + ") ";
+    }
+
+    public String nameString() {
+        return name;
     }
 }
