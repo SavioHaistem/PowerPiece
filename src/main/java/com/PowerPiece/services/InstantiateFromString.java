@@ -22,23 +22,25 @@ public class InstantiateFromString {
 
         return powerMap;
     }
-    public static List<Enemy> enemyList(String StringEnemiesIDs) {
+    public static Map<Integer,Enemy> enemyList(String StringEnemiesIDs) {
         EnemyDao enemyDao = DaoFactory.createEnemyDao();
-        List<Enemy> enemies = new ArrayList<>();
+        Map<Integer,Enemy> enemies = new HashMap<>();
         int[] enemiesIDs = Arrays.stream(StringEnemiesIDs.split(",")).mapToInt(Integer::parseInt).toArray();
 
         for (int id : enemiesIDs) {
-            enemies.add(enemyDao.findById(id));
+            Enemy enemy = enemyDao.findById(id);
+            enemies.put(enemy.getEntityId(),enemy);
         }
         return enemies;
     }
 
-    public static List<Enemy> enemyList(String StringEnemiesIDs, EnemyDao enemyDao) {
-        List<Enemy> enemies = new ArrayList<>();
+    public static Map<Integer,Enemy> enemyList(String StringEnemiesIDs, EnemyDao enemyDao) {
+        Map<Integer,Enemy> enemies = new HashMap<>();
         int[] enemiesIDs = Arrays.stream(StringEnemiesIDs.split(",")).mapToInt(Integer::parseInt).toArray();
 
         for (int id : enemiesIDs) {
-            enemies.add(enemyDao.findById(id));
+            Enemy enemy = enemyDao.findById(id);
+            enemies.put(enemy.getEntityId(),enemy);
         }
         return enemies;
     }

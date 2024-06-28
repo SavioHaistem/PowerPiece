@@ -1,16 +1,13 @@
 package com.PowerPiece.entities.dungeos;
 import com.PowerPiece.entities.enemies.Enemy;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class Dungeon {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
-    protected List<Enemy> enemies = new ArrayList<>();
+    protected Map<Integer,Enemy> enemies = new HashMap<>();
 
     public Dungeon() {
     }
@@ -20,13 +17,13 @@ public class Dungeon {
         this.name = name;
     }
 
-    public Dungeon(Integer id, String name, List<Enemy> enemies) {
+    public Dungeon(Integer id, String name, Map<Integer,Enemy> enemies) {
         this.id = id;
         this.name = name;
         this.enemies = enemies;
     }
 
-    public Dungeon(Integer id, String name, Enemy endBoss, List<Enemy> enemies) {
+    public Dungeon(Integer id, String name, Enemy endBoss, Map<Integer,Enemy> enemies) {
         this.id = id;
         this.name = name;
         this.endBoss = endBoss;
@@ -46,7 +43,7 @@ public class Dungeon {
     }
 
     public void removeEnemy(int id) {
-        this.enemies.removeIf(enemy -> enemy.getEntityId() == id);
+        this.enemies.remove(id);
     }
 
     public Integer getId() {
@@ -74,11 +71,11 @@ public class Dungeon {
         this.endBoss = endBoss;
     }
 
-    public List<Enemy> getEnemies() {
+    public Map<Integer,Enemy> getEnemies() {
         return enemies;
     }
 
-    public void setEnemies(List<Enemy> enemies) {
+    public void setEnemies(Map<Integer,Enemy> enemies) {
         this.enemies = enemies;
     }
 
