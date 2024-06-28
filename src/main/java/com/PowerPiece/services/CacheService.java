@@ -7,6 +7,7 @@ import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.Power;
 import com.PowerPiece.entities.models.Transformation;
 
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,5 +42,25 @@ public final class CacheService {
 
     public static Map<Integer, Dungeon> getDungeons() {
         return dungeons;
+    }
+
+    public static void addAkuma(AkumaNoMi akumaNoMi) {
+        akumanomis.put(akumaNoMi.getId(),akumaNoMi);
+    }
+
+    public static void addPower(Power power) {
+        powers.put(power.getId(),power);
+    }
+
+    public static void addEnemy(Enemy enemy) {
+        enemies.put(enemy.getEntityId(),enemy);
+    }
+
+    public static void addDungeon(Dungeon dungeon) {
+        dungeons.put(dungeon.getId(),dungeon);
+    }
+    
+    public static void addForm(Transformation form) {
+        transformations.put(form.getEntityId(),form);
     }
 }
