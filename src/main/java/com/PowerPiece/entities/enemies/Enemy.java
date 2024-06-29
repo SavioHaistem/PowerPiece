@@ -35,9 +35,4 @@ public class Enemy extends Entity {
     public void setEnemyCategory(Integer enemyCategory) {
         this.enemyCategory = enemyCategory;
     }
-
-    @Override
-    public String say(String sayed) {
-        return sayed;
-    }
 }

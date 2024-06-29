@@ -17,11 +17,6 @@ public class Player extends Entity {
     }
 
     @Override
-    public String say(String sayed) {
-        return null;
-    }
-
-    @Override
     public String toString() {
         StringBuilder powerList = new StringBuilder();
         for (Power power : powers.values()) {

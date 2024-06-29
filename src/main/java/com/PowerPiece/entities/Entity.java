@@ -96,6 +96,10 @@ public abstract class Entity implements Atackable {
         this.chamberID = chamberID;
     }
 
+    public void Say(String sayed) {
+        System.out.println("((( " + name + " say: " + sayed + " )))");
+    }
+
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
