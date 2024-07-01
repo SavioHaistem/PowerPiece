@@ -1,5 +1,5 @@
 package com.PowerPiece.interfaces;
 
-public interface Attack {
+public interface Attack extends Optionable {
     void inflictDamage(Atackable entity,Integer damage);
 }

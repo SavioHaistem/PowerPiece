@@ -87,7 +87,8 @@ public class Power implements Attack {
         return "Power (name: " + name + ") ";
     }
 
-    public String nameString() {
-        return name;
+    @Override
+    public String getOption() {
+        return "(" + id + "): " + name;
     }
 }

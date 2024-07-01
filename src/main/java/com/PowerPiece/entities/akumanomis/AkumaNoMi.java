@@ -69,6 +69,11 @@ public abstract class AkumaNoMi implements Fruit {
     }
 
     @Override
+    public String getOption() {
+        return "(" + id + "): " + name;
+    }
+
+    @Override
     public String toString() {
         return name + ": (id = " + id + ", type = " + type + ", powers = " + powers + ")";
     }

@@ -1,5 +1,5 @@
 package com.PowerPiece.interfaces;
 
-public interface Fruit {
+public interface Fruit extends Optionable {
     void Eat();
 }

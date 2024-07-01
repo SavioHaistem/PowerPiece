@@ -1,6 +1,8 @@
 package com.PowerPiece.services;
 
 import com.PowerPiece.entities.TextDecorations;
+import com.PowerPiece.entities.akumanomis.AkumaNoMi;
+import com.PowerPiece.interfaces.Optionable;
 
 import java.util.*;
 
@@ -17,6 +19,12 @@ public final class InterfaceService {
         System.out.print("> " + TextDecorations.RESET);
     }
 
+    public static <T extends Optionable> void showOption(T optionObject) {
+        String option = TextDecorations.YELLOW +
+                optionObject.getOption() +
+                TextDecorations.RESET;
+        System.out.println(option);
+    }
     public static int[] randomizeManyTimes(int manyRandoms, int range) {
         Set<Integer> randoms = new HashSet<>(range);
         Random random = new Random();
