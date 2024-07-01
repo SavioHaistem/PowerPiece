@@ -14,7 +14,6 @@ public class DB {
             if (connection == null) {
                 String url = "jdbc:sqlite:" + basepath + "/src/main/java/com/PowerPiece/db/akumas.db";
                 connection = DriverManager.getConnection(url);
-                System.out.println("connection successes");
                 return connection;
             }
             return connection;

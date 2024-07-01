@@ -18,7 +18,6 @@ public final class InterfaceService {
         System.out.println(TextDecorations.PURPLE + "| " + question);
         System.out.print("> " + TextDecorations.RESET);
     }
-
     public static <T extends Optionable> void showOption(T optionObject) {
         String option = TextDecorations.YELLOW +
                 optionObject.getOption() +
@@ -27,10 +26,12 @@ public final class InterfaceService {
     }
     public static int[] randomizeManyTimes(int manyRandoms, int range) {
         Set<Integer> randoms = new HashSet<>(range);
-        Random random = new Random();
+        Random randomGenerator = new Random();
         while (randoms.size() < manyRandoms) {
-            randoms.add(random.nextInt(range));
+            int randomInt = randomGenerator.nextInt(range);
+            randoms.add(randomInt > 0 ? randomInt : 10);
         }
+        System.out.println(randoms);
         return randoms.stream().mapToInt(Integer::intValue).toArray();
     }
 }

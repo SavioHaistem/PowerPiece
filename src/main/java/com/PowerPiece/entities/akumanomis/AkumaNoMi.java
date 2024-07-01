@@ -1,4 +1,5 @@
 package com.PowerPiece.entities.akumanomis;
+import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.interfaces.Fruit;
 import com.PowerPiece.entities.models.Power;
 import com.PowerPiece.enums.AkumasType;
@@ -70,7 +71,7 @@ public abstract class AkumaNoMi implements Fruit {
 
     @Override
     public String getOption() {
-        return "(" + id + "): " + name;
+        return "(" + id + "): " + TextDecorations.RED + type + " " + TextDecorations.PURPLE + name;
     }
 
     @Override
