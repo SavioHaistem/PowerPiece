@@ -1,5 +1,7 @@
 package com.PowerPiece.entities.models;
 
+import com.PowerPiece.entities.TextDecorations;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +58,20 @@ public class LifeBar {
 
     @Override
     public String toString() {
-        return getLifeBar().toString();
+        StringBuilder stringLifeBar = new StringBuilder();
+        getLifeBar().forEach(
+                character -> {
+                    if (character == '█') {
+                        stringLifeBar.append(TextDecorations.GREEN);
+                        stringLifeBar.append('█');
+                    } else {
+                        stringLifeBar.append(TextDecorations.RED);
+                        stringLifeBar.append('█');
+                    }
+                }
+        );
+        stringLifeBar.append(TextDecorations.RESET).append('\n');
+
+        return stringLifeBar.toString();
     }
 }

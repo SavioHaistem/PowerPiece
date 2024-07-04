@@ -5,6 +5,7 @@
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/services/CombatServie.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/dungeos/Chamber.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/DB.java
+/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Optionable.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/DaoFactory.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Attack.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/services/TransformService.java
@@ -14,6 +15,8 @@
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/akumanomis/Logia.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/akumanomis/Paramecia.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/models/Power.java
+/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/GameInterface.java
+/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/services/InterfaceService.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/impl/PowerDaoJdbc.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Fruit.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/enums/PowerType.java
@@ -23,13 +26,13 @@
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Atackable.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/EnemyDao.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/PowerDao.java
+/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/TextDecorations.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/exceptions/DbException.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/enums/AkumasType.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/models/LifeBar.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/impl/EnemyDaoJdbc.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/impl/AkumaDaoJdbc.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/AkumaDao.java
-/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/application/GameInterface.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/Player.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/akumanomis/Smile.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/models/Transformation.java

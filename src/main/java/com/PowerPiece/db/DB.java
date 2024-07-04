@@ -12,15 +12,14 @@ public class DB {
         try {
             Class.forName("org.sqlite.JDBC");
             if (connection == null) {
-                String url = "jdbc:sqlite:" + basepath + "/src/main/java/com/PowerPiece/db/akumas.db";
+                String url = "jdbc:sqlite:/home/savio/Downloads/applications/PowerPiece/db/akumas.db";
                 connection = DriverManager.getConnection(url);
                 return connection;
             }
             return connection;
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("error: " + e.getMessage());
             throw new DbException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("classForNameError");
         }
     }
 

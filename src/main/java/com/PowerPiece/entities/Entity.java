@@ -105,11 +105,7 @@ public abstract class Entity implements Atackable {
         StringBuilder entity = new StringBuilder();
         entity.append("====================").append('\n');
         entity.append(name).append(" (").append(entityId).append(")").append('\n');
-        for (Character health : lifeBar.getLifeBar()) {
-            entity.append(health);
-        }
-        entity.append('\n');
-        entity.append("====================").append('\n');
+        entity.append(lifeBar);
         return entity.toString();
     }
 
