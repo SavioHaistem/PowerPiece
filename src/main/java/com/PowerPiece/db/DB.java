@@ -7,10 +7,9 @@ import java.sql.*;
 public class DB {
     private static Connection connection = null;
     public static Connection getConnection() throws DbException {
-        String basepath = new File("").getAbsolutePath();
-
         try {
             Class.forName("org.sqlite.JDBC");
+
             if (connection == null) {
                 String url = "jdbc:sqlite:/home/savio/Downloads/applications/PowerPiece/db/akumas.db";
                 connection = DriverManager.getConnection(url);
