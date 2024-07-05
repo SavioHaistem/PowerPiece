@@ -32,6 +32,13 @@ public abstract class Entity implements Atackable {
         this.powers = akumaNoMi.getPowers();
     }
 
+    public Entity(Integer entityId, String name, LifeBar lifeBar, Map<Integer, Power> powers) {
+        this.entityId = entityId;
+        this.lifeBar = lifeBar;
+        this.name = name;
+        this.powers = powers;
+    }
+
     public LifeBar getLifeBar() {
         return lifeBar;
     }
@@ -80,6 +87,7 @@ public abstract class Entity implements Atackable {
 
     public void setAkumaNoMi(AkumaNoMi akumaNoMi) {
         this.akumaNoMi = akumaNoMi;
+        this.powers = akumaNoMi.getPowers();
     }
 
     public Integer getEntityId() {
