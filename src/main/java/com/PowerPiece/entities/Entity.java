@@ -103,9 +103,10 @@ public abstract class Entity implements Atackable {
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
-        entity.append("====================").append('\n');
+        entity.append("___________________________").append('\n');
         entity.append(name).append(" (").append(entityId).append(")").append('\n');
         entity.append(lifeBar);
+        entity.append("___________________________").append('\n');
         return entity.toString();
     }
 

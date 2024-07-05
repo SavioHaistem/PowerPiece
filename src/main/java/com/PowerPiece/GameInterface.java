@@ -16,17 +16,14 @@ public class GameInterface {
         Scanner scan = new Scanner(System.in);
         Player player = new Player();
 
+        //Create player:
         InterfaceService.title("Power Piece 1.0");
         InterfaceService.anyQuestion("Choose your nick name: ");
         player.setEntityId(1);
         player.setLifeBar(new LifeBar(100));
         player.setName(scan.nextLine());
 
-        System.out.println(player);
-        String currentPath = new File("").getAbsolutePath();
-        System.out.println("current path: " + currentPath);
-
-
+        //Choose one random AKumaNoMi:
         System.out.println(" ");
         List<AkumaNoMi> randomAkumaNoMis = Arrays.stream(randoms).mapToObj(CacheService.getAkumanomis()::get).toList();
         randomAkumaNoMis.forEach(InterfaceService::showOption);
