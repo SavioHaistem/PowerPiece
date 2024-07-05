@@ -4,6 +4,7 @@ import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.interfaces.Optionable;
 
+import java.io.IOException;
 import java.util.*;
 
 public final class InterfaceService {
@@ -33,5 +34,8 @@ public final class InterfaceService {
         }
         System.out.println(randoms);
         return randoms.stream().mapToInt(Integer::intValue).toArray();
+    }
+    public static void cleanTerminal() {
+        System.out.print("\033\143");
     }
 }
