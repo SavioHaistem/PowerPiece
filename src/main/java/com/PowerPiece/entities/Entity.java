@@ -1,5 +1,6 @@
 package com.PowerPiece.entities;
 
+import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.interfaces.Atackable;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.entities.models.Power;
@@ -9,8 +10,8 @@ import java.util.Map;
 
 public abstract class Entity implements Atackable {
     protected LifeBar lifeBar;
+    protected AkumaNoMi akumaNoMi;
     protected Integer entityId;
-    protected Integer chamberID;
     protected String name;
     protected Map<Integer,Power> powers = new HashMap<>();
 
@@ -23,19 +24,12 @@ public abstract class Entity implements Atackable {
         this.entityId = entityId;
     }
 
-    public Entity(Integer entityId, String name, LifeBar lifeBar,Map<Integer, Power> powers) {
+    public Entity(Integer entityId, String name, LifeBar lifeBar, AkumaNoMi akumaNoMi) {
         this.entityId = entityId;
         this.lifeBar = lifeBar;
         this.name = name;
-        this.powers = powers;
-    }
-
-    public Entity(Integer entityId, String name, LifeBar lifeBar,Map<Integer, Power> powers, Integer chamberID) {
-        this.entityId = entityId;
-        this.lifeBar = lifeBar;
-        this.name = name;
-        this.powers = powers;
-        this.chamberID = chamberID;
+        this.akumaNoMi = akumaNoMi;
+        this.powers = akumaNoMi.getPowers();
     }
 
     public LifeBar getLifeBar() {
@@ -80,20 +74,20 @@ public abstract class Entity implements Atackable {
         this.powers = powers;
     }
 
+    public AkumaNoMi getAkumaNoMi() {
+        return akumaNoMi;
+    }
+
+    public void setAkumaNoMi(AkumaNoMi akumaNoMi) {
+        this.akumaNoMi = akumaNoMi;
+    }
+
     public Integer getEntityId() {
         return entityId;
     }
 
     public void setEntityId(Integer entityId) {
         this.entityId = entityId;
-    }
-
-    public Integer getChamberID() {
-        return chamberID;
-    }
-
-    public void setChamberID(Integer chamberID) {
-        this.chamberID = chamberID;
     }
 
     public void Say(String sayed) {
@@ -103,10 +97,10 @@ public abstract class Entity implements Atackable {
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
-        entity.append("_______________").append('\n');
+        entity.append("---------------").append('\n');
         entity.append(name).append(" (").append(entityId).append(")").append('\n');
         entity.append(lifeBar);
-        entity.append("_______________").append('\n');
+        entity.append("---------------").append('\n');
         return entity.toString();
     }
 
