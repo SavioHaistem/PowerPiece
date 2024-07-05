@@ -13,7 +13,7 @@ public abstract class Entity implements Atackable {
     protected AkumaNoMi akumaNoMi;
     protected Integer entityId;
     protected String name;
-    protected Map<Integer,Power> powers = new HashMap<>();
+    protected Map<Integer, Power> powers = new HashMap<>();
 
     public Entity() {
     }
@@ -105,11 +105,24 @@ public abstract class Entity implements Atackable {
     @Override
     public String toString() {
         StringBuilder entity = new StringBuilder();
-        entity.append("---------------").append('\n');
-        entity.append(name).append(" (").append(entityId).append(")").append('\n');
+        entity.append("-------------------------").append('\n');
+        entity.append(name)
+                .append(TextDecorations.PURPLE)
+                .append(" (").append(akumaNoMi.getName() != null ? akumaNoMi.getName() : entityId).append(")")
+                .append('\n').append(TextDecorations.RESET);
         entity.append(lifeBar);
-        entity.append("---------------").append('\n');
+        entity.append("-------------------------").append('\n');
         return entity.toString();
+    }
+
+    public String toStringWithPowersName() {
+        StringBuilder powerList = new StringBuilder();
+        for (Power power : powers.values()) {
+            powerList.append(TextDecorations.CYAN).append("(").append(power.getId()).append(") ")
+                    .append(power.getName())
+                    .append(TextDecorations.RESET).append('\n');
+        }
+        return this.toString() + powerList;
     }
 
     @Override

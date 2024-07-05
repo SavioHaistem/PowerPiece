@@ -9,7 +9,11 @@ import java.util.*;
 
 public final class InterfaceService {
     public static void timer(Integer seconds) {
-
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void title(String title) {
         System.out.println(TextDecorations.BG_PURPLE + title);
@@ -32,10 +36,12 @@ public final class InterfaceService {
             int randomInt = randomGenerator.nextInt(range);
             randoms.add(randomInt > 0 ? randomInt : 10);
         }
-        System.out.println(randoms);
         return randoms.stream().mapToInt(Integer::intValue).toArray();
     }
     public static void cleanTerminal() {
         System.out.print("\033\143");
+    }
+    public static void loadText(String text) {
+        System.out.println(TextDecorations.GREEN + text + " ..." + TextDecorations.RESET);
     }
 }

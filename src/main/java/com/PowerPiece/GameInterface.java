@@ -4,8 +4,6 @@ import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.InterfaceService;
-
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -25,16 +23,23 @@ public class GameInterface {
         player.setName(scan.nextLine());
         InterfaceService.cleanTerminal();
 
+        //carregando akuma no mis:
+        InterfaceService.loadText("Aleatorizando akumanomis");
+        InterfaceService.timer(2);
+        InterfaceService.cleanTerminal();
+
         //Choose one random AKumaNoMi:
         List<AkumaNoMi> randomAkumaNoMis = Arrays.stream(randoms).mapToObj(CacheService.getAkumanomis()::get).toList();
         randomAkumaNoMis.forEach(InterfaceService::showOption);
-        System.out.println(" ");
         InterfaceService.anyQuestion("Choose your AkumaNoMI: ");
-        player.setPowers(CacheService.getAkumanomis().get(scan.nextInt()).getPowers());
+        player.setAkumaNoMi(CacheService.getAkumanomis().get(scan.nextInt()));
         player.takeDamage(10);
         InterfaceService.cleanTerminal();
-        System.out.println(player);
-
-
+        InterfaceService.loadText("Criando personagem");
+        InterfaceService.timer(2);
+        InterfaceService.cleanTerminal();
+        InterfaceService.title("Seu personagem");
+        System.out.println(player.toStringWithPowersName());
+        System.out.println("Deseja continuar ?");
     }
 }

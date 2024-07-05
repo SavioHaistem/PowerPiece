@@ -1,4 +1,5 @@
 package com.PowerPiece.entities;
+import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.entities.models.Power;
 
@@ -12,18 +13,21 @@ public class Player extends Entity {
         super(playerId,name,lifeBar);
     }
 
+    public Player(Integer entityId, String name, LifeBar lifeBar, AkumaNoMi akumaNoMi) {
+        super(entityId, name, lifeBar, akumaNoMi);
+    }
+
     public Player(Integer playerId, String name, LifeBar lifeBar, Map<Integer, Power> powers) {
         super(playerId,name,lifeBar,powers);
     }
 
-    @Override
-    public String toString() {
+    public String toStringWithPowers() {
         StringBuilder powerList = new StringBuilder();
         for (Power power : powers.values()) {
-            powerList.append("(").append(power.getId()).append(") ")
-                    .append(power.getName()).append(": ")
-                    .append(power.getDescription()).append('\n');
+            powerList.append(TextDecorations.CYAN).append("(").append(power.getId()).append(") ")
+                    .append(power.getName()).append(": ").append(TextDecorations.YELLOW)
+                    .append(power.getDescription()).append(TextDecorations.RESET).append('\n');
         }
-        return super.toString() + powerList.toString();
+        return super.toString() + powerList;
     }
 }
