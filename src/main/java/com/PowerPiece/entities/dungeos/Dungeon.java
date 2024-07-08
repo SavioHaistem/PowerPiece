@@ -1,9 +1,11 @@
 package com.PowerPiece.entities.dungeos;
+import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.enemies.Enemy;
+import com.PowerPiece.interfaces.Optionable;
 
 import java.util.*;
 
-public class Dungeon {
+public class Dungeon implements Optionable {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
@@ -82,5 +84,11 @@ public class Dungeon {
     @Override
     public String toString() {
         return this.name + ": " + this.id;
+    }
+
+    @Override
+    public String getOption() {
+        return TextDecorations.GREEN + "(" + id + "): " +
+                TextDecorations.YELLOW + name;
     }
 }

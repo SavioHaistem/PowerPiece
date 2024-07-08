@@ -3,8 +3,10 @@ import com.PowerPiece.entities.Player;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.services.CacheService;
+import com.PowerPiece.services.CombatServie;
 import com.PowerPiece.services.InterfaceService;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,6 +42,12 @@ public class GameInterface {
         InterfaceService.cleanTerminal();
         InterfaceService.title("Seu personagem");
         System.out.println(player.toStringWithPowersName());
-        System.out.println("Deseja continuar ?");
+        InterfaceService.timer(2);
+        InterfaceService.cleanTerminal();
+        InterfaceService.title("Escolha uma Dungeon");
+        CacheService.getDungeons().values().forEach(InterfaceService::showOption);
+        InterfaceService.anyQuestion("Dungeon:");
+        CombatServie.setDungeon(scan.nextInt());
+        CombatServie.currentDungeon.getEnemies().forEach((integer, enemy) -> System.out.println(enemy));
     }
 }
