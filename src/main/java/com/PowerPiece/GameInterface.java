@@ -1,7 +1,7 @@
 package com.PowerPiece;
 import com.PowerPiece.entities.Player;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
-import com.PowerPiece.entities.enemies.Enemy;
+import com.PowerPiece.entities.dungeos.Dungeon;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.CombatServie;
@@ -34,7 +34,6 @@ public class GameInterface {
         randomAkumaNoMis.forEach(InterfaceService::showOption);
         InterfaceService.anyQuestion("Choose your AkumaNoMI: ");
         player.setAkumaNoMi(CacheService.getAkumanomis().get(scan.nextInt()));
-        player.takeDamage(10);
         InterfaceService.cleanTerminal();
         InterfaceService.loadText("Criando personagem");
         InterfaceService.timer(2);
@@ -47,10 +46,16 @@ public class GameInterface {
         CacheService.getDungeons().values().forEach(InterfaceService::showOption);
         InterfaceService.anyQuestion("Dungeon:");
         CombatServie.setDungeon(scan.nextInt());
-        while(CombatServie.haveEnemy()) {
-            System.out.println("Cleared");
-            CombatServie.currentDungeon.getEnemies().clear();
+        Dungeon currentDungeon = CombatServie.currentDungeon;
+        currentDungeon.setPlayer(player);
+        while(currentDungeon.isActive() && !currentDungeon.getEnemies().isEmpty()) {
+            currentDungeon.getEnemies().forEach((integer, enemy) -> System.out.println(enemy.toStringWithPowersName()));
+            InterfaceService.anyQuestion("Sair da dungeon ? ");
+            if (scan.nextLine().equals("yes") ) {
+                currentDungeon.quitDungeon();
+            }
         }
-        System.out.println("Enemies appear");
+        System.out.println("Boss appear");
+        System.out.println(currentDungeon.getEndBoss());
     }
 }

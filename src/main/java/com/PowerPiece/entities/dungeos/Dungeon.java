@@ -1,4 +1,6 @@
 package com.PowerPiece.entities.dungeos;
+import com.PowerPiece.entities.Entity;
+import com.PowerPiece.entities.Player;
 import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.interfaces.Optionable;
@@ -10,6 +12,7 @@ public class Dungeon implements Optionable {
     protected String name;
     protected Enemy endBoss;
     protected Map<Integer,Enemy> enemies = new HashMap<>();
+    protected Entity player;
 
     public Dungeon() {
     }
@@ -32,16 +35,28 @@ public class Dungeon implements Optionable {
         this.enemies = enemies;
     }
 
-    public boolean isActive() {
-        return !enemies.isEmpty();
+    public Entity getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Entity player) {
+        this.player = player;
     }
 
     public Enemy endBoss() {
         return this.endBoss;
     }
 
+    public boolean isActive() {
+        return player != null;
+    }
+
     public void quitDungeon() {
-        this.enemies = null;
+        this.player = null;
+    }
+
+    public void comeInDungeon(Player player) {
+        this.player = player;
     }
 
     public void removeEnemy(int id) {
