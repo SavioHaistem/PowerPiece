@@ -1,14 +1,13 @@
 package com.PowerPiece;
 import com.PowerPiece.entities.Player;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
+import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.CombatServie;
 import com.PowerPiece.services.InterfaceService;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class GameInterface {
     public static void main(String[] args) {
@@ -48,6 +47,10 @@ public class GameInterface {
         CacheService.getDungeons().values().forEach(InterfaceService::showOption);
         InterfaceService.anyQuestion("Dungeon:");
         CombatServie.setDungeon(scan.nextInt());
-        CombatServie.currentDungeon.getEnemies().forEach((integer, enemy) -> System.out.println(enemy));
+        while(CombatServie.haveEnemy()) {
+            System.out.println("Cleared");
+            CombatServie.currentDungeon.getEnemies().clear();
+        }
+        System.out.println("Enemies appear");
     }
 }

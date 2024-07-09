@@ -22,4 +22,8 @@ public final class CombatServie {
     public static Enemy getEndBoss() {
         return currentDungeon.getEndBoss();
     }
+
+    public static boolean haveEnemy() {
+        return !currentDungeon.getEnemies().isEmpty();
+    }
 }
