@@ -16,6 +16,7 @@ public final class InterfaceService {
         }
     }
     public static void title(String title) {
+        System.out.println(" ");
         System.out.println(TextDecorations.BG_PURPLE + title);
         System.out.println(TextDecorations.RESET);
     }

@@ -5,25 +5,11 @@ import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.Power;
 
 public final class CombatServie {
-    public static Dungeon currentDungeon = null;
-
-    public static void killEntity(Integer entityID) {
-        currentDungeon.removeEnemy(entityID);
+    public static void killEntity(Entity entity) {
+        entity.setLifeBar(null);
     }
 
     public static void hitEntity(Entity entity, Power power) {
         entity.takeDamage(power.getCategory() * 10);
-    }
-
-    public static void setDungeon(Integer dungeonID) {
-        currentDungeon = CacheService.getDungeons().get(dungeonID);
-    }
-
-    public static Enemy getEndBoss() {
-        return currentDungeon.getEndBoss();
-    }
-
-    public static boolean haveEnemy() {
-        return !currentDungeon.getEnemies().isEmpty();
     }
 }

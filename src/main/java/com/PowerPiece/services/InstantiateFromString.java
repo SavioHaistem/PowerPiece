@@ -22,25 +22,25 @@ public class InstantiateFromString {
 
         return powerMap;
     }
-    public static Map<Integer,Enemy> enemyList(String StringEnemiesIDs) {
+    public static List<Enemy> enemyList(String StringEnemiesIDs) {
         EnemyDao enemyDao = DaoFactory.createEnemyDao();
-        Map<Integer,Enemy> enemies = new HashMap<>();
+        List<Enemy> enemies = new Stack<>();
         int[] enemiesIDs = Arrays.stream(StringEnemiesIDs.split(",")).mapToInt(Integer::parseInt).toArray();
 
         for (int id : enemiesIDs) {
             Enemy enemy = enemyDao.findById(id);
-            enemies.put(enemy.getEntityId(),enemy);
+            enemies.add(enemy);
         }
         return enemies;
     }
 
-    public static Map<Integer,Enemy> enemyList(String StringEnemiesIDs, EnemyDao enemyDao) {
-        Map<Integer,Enemy> enemies = new HashMap<>();
+    public static List<Enemy> enemyList(String StringEnemiesIDs, EnemyDao enemyDao) {
+        List<Enemy> enemies = new Stack<>();
         int[] enemiesIDs = Arrays.stream(StringEnemiesIDs.split(",")).mapToInt(Integer::parseInt).toArray();
 
         for (int id : enemiesIDs) {
             Enemy enemy = enemyDao.findById(id);
-            enemies.put(enemy.getEntityId(),enemy);
+            enemies.add(enemy);
         }
         return enemies;
     }

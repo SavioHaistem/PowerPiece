@@ -11,8 +11,7 @@ public class Dungeon implements Optionable {
     protected Integer id;
     protected String name;
     protected Enemy endBoss;
-    protected Map<Integer,Enemy> enemies = new HashMap<>();
-    protected Entity player;
+    private List<Enemy> enemies;
 
     public Dungeon() {
     }
@@ -22,45 +21,21 @@ public class Dungeon implements Optionable {
         this.name = name;
     }
 
-    public Dungeon(Integer id, String name, Map<Integer,Enemy> enemies) {
+    public Dungeon(Integer id, String name, List<Enemy> enemies) {
         this.id = id;
         this.name = name;
         this.enemies = enemies;
     }
 
-    public Dungeon(Integer id, String name, Enemy endBoss, Map<Integer,Enemy> enemies) {
+    public Dungeon(Integer id, String name, Enemy endBoss, List<Enemy> enemies) {
         this.id = id;
         this.name = name;
         this.endBoss = endBoss;
         this.enemies = enemies;
     }
 
-    public Entity getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Entity player) {
-        this.player = player;
-    }
-
     public Enemy endBoss() {
         return this.endBoss;
-    }
-
-    public boolean isActive() {
-        return player != null;
-    }
-
-    public void quitDungeon() {
-        this.player = null;
-    }
-
-    public void comeInDungeon(Player player) {
-        this.player = player;
-    }
-
-    public void removeEnemy(int id) {
-        this.enemies.remove(id);
     }
 
     public Integer getId() {
@@ -88,11 +63,11 @@ public class Dungeon implements Optionable {
         this.endBoss = endBoss;
     }
 
-    public Map<Integer,Enemy> getEnemies() {
+    public List<Enemy> getEnemies() {
         return enemies;
     }
 
-    public void setEnemies(Map<Integer,Enemy> enemies) {
+    public void setEnemies(Stack<Enemy> enemies) {
         this.enemies = enemies;
     }
 

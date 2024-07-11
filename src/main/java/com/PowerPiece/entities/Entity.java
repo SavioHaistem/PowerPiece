@@ -44,7 +44,7 @@ public abstract class Entity implements Atackable {
     }
 
     public boolean isLive() {
-        return lifeBar.getCurrentLife() > 0;
+        return this.lifeBar != null;
     }
 
     public String getPowersIDs() {
@@ -128,5 +128,18 @@ public abstract class Entity implements Atackable {
     @Override
     public void takeDamage(Integer damage) {
         lifeBar.receiveDamage(damage);
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Entity entity)) return false;
+
+        return entityId.equals(entity.entityId);
+    }
+
+    @Override
+    public int hashCode() {
+        return entityId.hashCode();
     }
 }

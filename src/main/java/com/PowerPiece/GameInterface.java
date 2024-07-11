@@ -1,10 +1,14 @@
 package com.PowerPiece;
+import com.PowerPiece.entities.Entity;
 import com.PowerPiece.entities.Player;
+import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.dungeos.Dungeon;
+import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.CombatServie;
+import com.PowerPiece.services.DungeonNavigator;
 import com.PowerPiece.services.InterfaceService;
 
 import java.util.*;
@@ -25,11 +29,11 @@ public class GameInterface {
         InterfaceService.cleanTerminal();
 
         //carregando akuma no mis:
-        InterfaceService.loadText("Aleatorizando akumanomis");
+/*        InterfaceService.loadText("Aleatorizando akumanomis");
         InterfaceService.timer(2);
-        InterfaceService.cleanTerminal();
+        InterfaceService.cleanTerminal();*/
 
-        //Choose one random AKumaNoMi:
+        /*//Choose one random AKumaNoMi:
         List<AkumaNoMi> randomAkumaNoMis = Arrays.stream(randoms).mapToObj(CacheService.getAkumanomis()::get).toList();
         randomAkumaNoMis.forEach(InterfaceService::showOption);
         InterfaceService.anyQuestion("Choose your AkumaNoMI: ");
@@ -41,21 +45,20 @@ public class GameInterface {
         InterfaceService.title("Seu personagem");
         System.out.println(player.toStringWithPowersName());
         InterfaceService.timer(2);
-        InterfaceService.cleanTerminal();
+        InterfaceService.cleanTerminal();*/
         InterfaceService.title("Escolha uma Dungeon");
         CacheService.getDungeons().values().forEach(InterfaceService::showOption);
         InterfaceService.anyQuestion("Dungeon:");
-        CombatServie.setDungeon(scan.nextInt());
-        Dungeon currentDungeon = CombatServie.currentDungeon;
-        currentDungeon.setPlayer(player);
-        while(currentDungeon.isActive() && !currentDungeon.getEnemies().isEmpty()) {
-            currentDungeon.getEnemies().forEach((integer, enemy) -> System.out.println(enemy.toStringWithPowersName()));
-            InterfaceService.anyQuestion("Sair da dungeon ? ");
-            if (scan.nextLine().equals("yes") ) {
-                currentDungeon.quitDungeon();
-            }
+        DungeonNavigator.comeInDungeon(player,CacheService.getDungeons().get(scan.nextInt()));
+        Enemy enemy = DungeonNavigator.getNextEnemy();
+        while (enemy != null) {
+            System.out.println("apareceu: " + enemy.getName());
+            CombatServie.killEntity(enemy);
+            System.out.println("morreu: " + enemy.getName());
+            InterfaceService.timer(2);
+            InterfaceService.cleanTerminal();
+            enemy = DungeonNavigator.getNextEnemy();
         }
-        System.out.println("Boss appear");
-        System.out.println(currentDungeon.getEndBoss());
+        System.out.println(TextDecorations.BG_RED + "KAIDO has defeat, CONGRATULATIONS" + TextDecorations.RESET);
     }
 }
