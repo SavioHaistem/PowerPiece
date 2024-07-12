@@ -8,9 +8,6 @@ import com.PowerPiece.entities.enemies.Enemy;
 
 import java.util.Iterator;
 
-
-//TODO: COMPLETE DUNGEON NAVIGATOR
-//TODO: GETNEXT ENEMY METHOD
 public class DungeonNavigator {
     private static Dungeon currentDungeon;
     private static Entity currentPlayer;

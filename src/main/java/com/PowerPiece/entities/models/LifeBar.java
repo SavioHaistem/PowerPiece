@@ -41,8 +41,12 @@ public class LifeBar {
         this.currentLife = currentLife;
     }
 
-    public void receiveDamage(int damage) {
-        currentLife -= damage;
+    public void minusLife(int minusLifeValue) {
+        currentLife -= minusLifeValue;
+    }
+
+    public void plusLife(Integer plusLifeValue) {
+        currentLife += plusLifeValue;
     }
 
     public void updateHealthBar() {

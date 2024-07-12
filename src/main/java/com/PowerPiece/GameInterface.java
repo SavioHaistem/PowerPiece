@@ -52,9 +52,7 @@ public class GameInterface {
         DungeonNavigator.comeInDungeon(player,CacheService.getDungeons().get(scan.nextInt()));
         Enemy enemy = DungeonNavigator.getNextEnemy();
         while (enemy != null) {
-            System.out.println("apareceu: " + enemy.getName());
             CombatServie.killEntity(enemy);
-            System.out.println("morreu: " + enemy.getName());
             InterfaceService.timer(2);
             InterfaceService.cleanTerminal();
             enemy = DungeonNavigator.getNextEnemy();

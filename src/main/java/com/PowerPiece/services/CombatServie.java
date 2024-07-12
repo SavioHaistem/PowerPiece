@@ -1,7 +1,5 @@
 package com.PowerPiece.services;
 import com.PowerPiece.entities.Entity;
-import com.PowerPiece.entities.dungeos.Dungeon;
-import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.Power;
 
 public final class CombatServie {
@@ -11,5 +9,9 @@ public final class CombatServie {
 
     public static void hitEntity(Entity entity, Power power) {
         entity.takeDamage(power.getCategory() * 10);
+    }
+
+    public static void healEntity(Entity entity, int lifeHeal) {
+        entity.takeHeal(lifeHeal);
     }
 }

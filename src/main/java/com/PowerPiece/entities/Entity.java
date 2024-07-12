@@ -126,8 +126,13 @@ public abstract class Entity implements Atackable {
     }
 
     @Override
-    public void takeDamage(Integer damage) {
-        lifeBar.receiveDamage(damage);
+    public void takeDamage(int damageValue) {
+        lifeBar.minusLife(damageValue);
+    }
+
+    @Override
+    public void takeHeal(int healValue) {
+        lifeBar.plusLife(healValue);
     }
 
     @Override
