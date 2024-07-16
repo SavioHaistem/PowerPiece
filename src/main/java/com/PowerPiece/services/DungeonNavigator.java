@@ -47,10 +47,8 @@ public class DungeonNavigator {
         if (!currentEnemy.isLive() && enemiesRoad.hasNext()) {
             enemiesRoad.remove();
             currentEnemy = enemiesRoad.next();
-            InterfaceService.title(currentEnemy.getName());
             return currentEnemy;
         } else if (currentEnemy.getLifeBar() == null && getBoss().isLive()) {
-            System.out.println(TextDecorations.BG_RED + "!!!!!!!!!!!!!!!!!!!!!! KAIDO APPEAR !!!!!!!!!!!!!!!!!!!!!!!!!!!" + TextDecorations.RESET);
             return getBoss();
         } else {
             return null;

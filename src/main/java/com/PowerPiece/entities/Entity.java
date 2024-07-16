@@ -107,9 +107,7 @@ public abstract class Entity implements Atackable {
         StringBuilder entity = new StringBuilder();
         entity.append("-------------------------").append('\n');
         entity.append(name)
-                .append(TextDecorations.PURPLE)
-                .append(" (").append(akumaNoMi != null ? akumaNoMi.getName() : entityId).append(")")
-                .append('\n').append(TextDecorations.RESET);
+                .append(" (").append(akumaNoMi != null ? akumaNoMi.getName() : entityId).append(")  ");
         entity.append(lifeBar);
         entity.append("-------------------------").append('\n');
         return entity.toString();
