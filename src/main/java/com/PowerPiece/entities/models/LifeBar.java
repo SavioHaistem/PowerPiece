@@ -41,6 +41,7 @@ public class LifeBar {
         this.currentLife = currentLife;
     }
 
+    //TODO: convert minus and plus life to setCurrentLife;
     public void minusLife(int minusLifeValue) {
         currentLife -= minusLifeValue;
     }

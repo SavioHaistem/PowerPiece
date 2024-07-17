@@ -11,10 +11,10 @@ public final class CombatServie {
     public static void hitEntity(Entity entity, Power power) {
         int damage = power.getCategory() * 10;
         entity.takeDamage(damage);
-        if (entity.getLifeBar().getCurrentLife() <= 0) {
+        if (entity.getLifeBar().getCurrentLife() <= 10) {
             killEntity(entity);
         }
-        System.out.println(entity.getName() + "recebeu " + damage + "pontos de dano");
+        InterfaceService.tellerSays(entity.getName() + " has take damage: -" + damage + "life points ");
     }
 
     public static void healEntity(Entity entity, int lifeHeal) {

@@ -63,15 +63,21 @@ public class GameInterface {
                     InterfaceService.anyQuestion("escolha seu ataque");
                     CombatServie.hitEntity(enemy,player.getPowers().get(scan.nextInt()));
                     InterfaceService.cleanTerminal();
-                    System.out.println(enemy);
+                    if (enemy.isLive()) {
+                        System.out.println(enemy);
+                    } else {
+                        InterfaceService.tellerSays("the enemy dead");
+                    }
                     InterfaceService.timer(2);
                     InterfaceService.cleanTerminal();
                 } else {
                     InterfaceService.cleanTerminal();
-                    InterfaceService.timer(2);
-                    System.out.println("enemy jump your turn");
-                    InterfaceService.timer(2);
+                    InterfaceService.timer(1);
+                    InterfaceService.tellerSays("enemy skip turn");
+                    InterfaceService.timer(1);
                     InterfaceService.cleanTerminal();
+
+                    //TODO: clear scan before read input user.
                 }
             }
             enemy = DungeonNavigator.getNextEnemy();

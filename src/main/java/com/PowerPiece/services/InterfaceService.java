@@ -45,4 +45,7 @@ public final class InterfaceService {
     public static void loadText(String text) {
         System.out.println(TextDecorations.GREEN + text + " ..." + TextDecorations.RESET);
     }
+    public static void tellerSays(String text) {
+        System.out.println(TextDecorations.BOLD + text.toUpperCase() + TextDecorations.RESET);
+    }
 }
