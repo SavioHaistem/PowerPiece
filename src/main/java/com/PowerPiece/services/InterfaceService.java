@@ -1,10 +1,8 @@
 package com.PowerPiece.services;
 
 import com.PowerPiece.entities.TextDecorations;
-import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.interfaces.Optionable;
 
-import java.io.IOException;
 import java.util.*;
 
 public final class InterfaceService {
@@ -30,7 +28,7 @@ public final class InterfaceService {
                 TextDecorations.RESET;
         System.out.println(option);
     }
-    public static int[] randomizeManyTimes(int manyRandoms, int range) {
+    public static int[] random(int manyRandoms, int range) {
         Set<Integer> randoms = new HashSet<>(range);
         Random randomGenerator = new Random();
         while (randoms.size() < manyRandoms) {
@@ -38,6 +36,10 @@ public final class InterfaceService {
             randoms.add(randomInt > 0 ? randomInt : 10);
         }
         return randoms.stream().mapToInt(Integer::intValue).toArray();
+    }
+    public static int random(int range) {
+        Random random = new Random();
+        return random.nextInt(range);
     }
     public static void cleanTerminal() {
         System.out.print("\033\143");

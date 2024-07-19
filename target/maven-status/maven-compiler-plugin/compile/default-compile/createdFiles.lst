@@ -19,6 +19,7 @@ com/PowerPiece/entities/models/Transformation.class
 com/PowerPiece/entities/akumanomis/Smile.class
 com/PowerPiece/exceptions/DbException.class
 com/PowerPiece/entities/models/LifeBar.class
+com/PowerPiece/services/DungeonNavigator.class
 com/PowerPiece/db/DB.class
 com/PowerPiece/db/dao/PowerDao.class
 com/PowerPiece/services/CombatServie.class

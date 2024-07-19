@@ -14,7 +14,7 @@ public final class CombatServie {
         if (entity.getLifeBar().getCurrentLife() <= 10) {
             killEntity(entity);
         }
-        InterfaceService.tellerSays(entity.getName() + " has take damage: -" + damage + "life points ");
+        InterfaceService.tellerSays(entity.getName() + " has take damage: -" + damage + " life points ");
     }
 
     public static void healEntity(Entity entity, int lifeHeal) {
