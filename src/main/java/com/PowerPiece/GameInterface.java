@@ -67,27 +67,27 @@ public class GameInterface {
                 }
                 InterfaceService.timer(1);
                 InterfaceService.cleanTerminal();
-                if (enemy.isLive()) {
+                if (enemy.isLive() && player.isLive()) {
                     System.out.println(enemy);
                     System.out.println(player.toStringWithPowers());
                     InterfaceService.timer(2);
                     InterfaceService.cleanTerminal();
                     InterfaceService.tellerSays("Next turn");
                     InterfaceService.timer(1);
-                } else {
+                } else if (player.isLive()) {
                     System.out.println(player);
                     InterfaceService.tellerSays("Enemy has dead");
                     InterfaceService.timer(2);
                     InterfaceService.cleanTerminal();
+                    enemy = DungeonNavigator.getNextEnemy();
+                } else {
+                    InterfaceService.cleanTerminal();
+                    InterfaceService.tellerSays("|~~~~~~~~~ you has dead T-T ~~~~~~~~|");
+                    InterfaceService.timer(2);
                 }
-                //TODO: fix player death
-                //TODO: clear scan before read input user.
             }
-            if (player.isLive()) {
-                enemy = DungeonNavigator.getNextEnemy();
-            } else {
-                InterfaceService.tellerSays("|~~~~~~~~~ you has dead T-T ~~~~~~~~|");
-            }
+            //TODO: fix player death
+            //TODO: clear scan before read input user.
         }
         if (player.isLive()) {
             System.out.println(TextDecorations.BG_RED + "KAIDO has defeat, CONGRATULATIONS" + TextDecorations.RESET);
