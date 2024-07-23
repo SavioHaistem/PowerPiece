@@ -1,7 +1,6 @@
 com/PowerPiece/entities/models/Power.class
 com/PowerPiece/entities/Entity.class
 com/PowerPiece/services/CacheService.class
-com/PowerPiece/interfaces/Attack.class
 com/PowerPiece/db/dao/AkumaDao.class
 com/PowerPiece/services/InstantiateFromString.class
 com/PowerPiece/entities/dungeos/Dungeon.class
@@ -12,6 +11,7 @@ com/PowerPiece/entities/dungeos/Chamber.class
 com/PowerPiece/services/TransformService.class
 com/PowerPiece/entities/akumanomis/Logia.class
 com/PowerPiece/entities/akumanomis/Zoan.class
+com/PowerPiece/exceptions/InvalidInputException.class
 com/PowerPiece/db/dao/impl/AkumaDaoJdbc$1.class
 com/PowerPiece/db/dao/impl/EnemyDaoJdbc.class
 com/PowerPiece/GameInterface.class

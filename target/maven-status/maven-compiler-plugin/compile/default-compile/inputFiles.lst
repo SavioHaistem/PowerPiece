@@ -6,8 +6,8 @@
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/dungeos/Chamber.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/DB.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Optionable.java
+/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/exceptions/InvalidInputException.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/DaoFactory.java
-/home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/interfaces/Attack.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/services/TransformService.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/entities/akumanomis/Zoan.java
 /home/savio/Projects/java/maven/PowerPiece/src/main/java/com/PowerPiece/db/dao/impl/DungeonDaoJdbc.java
