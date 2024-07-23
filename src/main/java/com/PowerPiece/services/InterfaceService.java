@@ -22,11 +22,8 @@ public final class InterfaceService {
         System.out.println(TextDecorations.PURPLE + "| " + question);
         System.out.print("> " + TextDecorations.RESET);
     }
-    public static <T extends Optionable> void showOption(T optionObject) {
-        String option = TextDecorations.YELLOW +
-                optionObject.getOption() +
-                TextDecorations.RESET;
-        System.out.println(option);
+    public static <T extends Optionable> void showOptions(T optionObject, int value) {
+        System.out.println(optionObject.getOption(value));
     }
     public static int[] random(int manyRandoms, int range) {
         Set<Integer> randoms = new HashSet<>(range);
@@ -41,10 +38,16 @@ public final class InterfaceService {
         Random random = new Random();
         return random.nextInt(range);
     }
-    public static void chooseOneOption() {
-        Scanner scanner = new Scanner(System.in);
-
-        scanner.close();
+    public static <T extends Optionable> T chooseOneOption(String messageBox, List<T> optionsList, Scanner scanner) {
+        for (int index = 0; index < optionsList.size(); index++) {
+            InterfaceService.showOptions(optionsList.get(index),index + 1);
+        }
+        InterfaceService.anyQuestion(messageBox);
+        return optionsList.get(scanner.nextInt() - 1);
+    }
+    public static <T extends Optionable> T chooseOneOption(List<T> optionsList) {
+        //this method choose one random option
+        return optionsList.get(random(optionsList.size()));
     }
     public static void cleanTerminal() {
         System.out.print("\033\143");

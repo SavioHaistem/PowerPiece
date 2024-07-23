@@ -70,8 +70,8 @@ public abstract class AkumaNoMi implements Fruit {
     }
 
     @Override
-    public String getOption() {
-        return "(" + id + "): " + TextDecorations.RED + type + " " + TextDecorations.PURPLE + name;
+    public String getOption(int value) {
+        return "(" + value + "): " + TextDecorations.RED + type + " " + TextDecorations.PURPLE + name;
     }
 
     @Override

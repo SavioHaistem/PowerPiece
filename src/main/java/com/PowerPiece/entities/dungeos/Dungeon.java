@@ -77,8 +77,8 @@ public class Dungeon implements Optionable {
     }
 
     @Override
-    public String getOption() {
-        return TextDecorations.GREEN + "(" + id + "): " +
+    public String getOption(int value) {
+        return TextDecorations.GREEN + "(" + value + "): " +
                 TextDecorations.YELLOW + name;
     }
 }
