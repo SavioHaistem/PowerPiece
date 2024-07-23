@@ -8,6 +8,7 @@ import com.PowerPiece.entities.models.Power;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class Entity implements Atackable {
     protected LifeBar lifeBar;
@@ -74,12 +75,12 @@ public abstract class Entity implements Atackable {
         this.name = name;
     }
 
-    public Map<Integer, Power> getPowers() {
-        return powers;
+    public List<Power> getPowers() {
+        return powers.values().stream().toList();
     }
 
-    public Power getPowerByIndex(int index) {
-        return powers.values().stream().toList().get(index);
+    public Power getPowerByIndex(int id) {
+        return getPowers().get(id);
     }
 
     public void setPowers(Map<Integer, Power> powers) {

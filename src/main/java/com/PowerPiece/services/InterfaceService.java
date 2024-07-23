@@ -41,6 +41,11 @@ public final class InterfaceService {
         Random random = new Random();
         return random.nextInt(range);
     }
+    public static void chooseOneOption() {
+        Scanner scanner = new Scanner(System.in);
+
+        scanner.close();
+    }
     public static void cleanTerminal() {
         System.out.print("\033\143");
     }

@@ -4,6 +4,7 @@ import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.LifeBar;
+import com.PowerPiece.entities.models.Power;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.CombatServie;
 import com.PowerPiece.services.DungeonNavigator;
@@ -51,17 +52,18 @@ public class GameInterface {
             InterfaceService.timer(1);
             InterfaceService.cleanTerminal();
             while(enemy.isLive() && player.isLive()) {
+                CombatServie.healEntity(player,40);
                 InterfaceService.cleanTerminal();
                 System.out.println(enemy);
                 System.out.println(player.toStringWithPowers());
                 InterfaceService.timer(1);
                 //choose turn:
                 if (CombatServie.isPlayerTurn()) {
-                    player.getPowers().values().forEach(InterfaceService::showOption);
-                    InterfaceService.anyQuestion("escolha seu ataque");
+                    //TODO: Choose option method;
+                    InterfaceService.anyQuestion("Escolha seu ataque");
                     CombatServie.hitEntity(enemy,player.getPowers().get(scan.nextInt()));
                 } else {
-                    List<Integer> enemyPowers = enemy.getPowers().keySet().stream().toList();
+                    List<Integer> enemyPowers = enemy.getPowers().stream().map(Power::getId).toList();
                     int randomPowerIndex = InterfaceService.random(enemyPowers.size());
                     CombatServie.hitEntity(player,enemy.getPowerByIndex(randomPowerIndex));
                 }
@@ -72,17 +74,17 @@ public class GameInterface {
                     System.out.println(player.toStringWithPowers());
                     InterfaceService.timer(2);
                     InterfaceService.cleanTerminal();
-                    InterfaceService.tellerSays("Next turn");
+                    InterfaceService.tellerSays("Próximo turno");
                     InterfaceService.timer(1);
                 } else if (player.isLive()) {
                     System.out.println(player);
-                    InterfaceService.tellerSays("Enemy has dead");
+                    InterfaceService.tellerSays("O inimigo foi derrotado");
                     InterfaceService.timer(2);
                     InterfaceService.cleanTerminal();
                     enemy = DungeonNavigator.getNextEnemy();
                 } else {
                     InterfaceService.cleanTerminal();
-                    InterfaceService.tellerSays("|~~~~~~~~~ you has dead T-T ~~~~~~~~|");
+                    InterfaceService.tellerSays("|~~~~~~~~~ você morreu T-T ~~~~~~~~|");
                     InterfaceService.timer(2);
                 }
             }
@@ -90,7 +92,7 @@ public class GameInterface {
             //TODO: clear scan before read input user.
         }
         if (player.isLive()) {
-            System.out.println(TextDecorations.BG_RED + "KAIDO has defeat, CONGRATULATIONS" + TextDecorations.RESET);
+            System.out.println(TextDecorations.BG_RED +  " PARABÉNS, VOCÊ SOBREVIVEU ATÉ O FINAL DA DG" + TextDecorations.RESET);
         } else {
             InterfaceService.cleanTerminal();
             InterfaceService.loadText("exiting dungeon");
