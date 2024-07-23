@@ -2,6 +2,7 @@ package com.PowerPiece;
 import com.PowerPiece.entities.Player;
 import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.entities.akumanomis.AkumaNoMi;
+import com.PowerPiece.entities.dungeos.Dungeon;
 import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.LifeBar;
 import com.PowerPiece.entities.models.Power;
@@ -34,17 +35,15 @@ public class GameInterface {
 
         //Choose one random AKumaNoMi:
         List<AkumaNoMi> randomAkumaNoMis = Arrays.stream(randoms).mapToObj(CacheService.getAkumanomis()::get).toList();
-        randomAkumaNoMis.forEach(InterfaceService::showOption);
-        InterfaceService.anyQuestion("Choose your AkumaNoMI: ");
-        player.setAkumaNoMi(CacheService.getAkumanomis().get(scan.nextInt()));
+        player.setAkumaNoMi(InterfaceService.chooseOneOption("Escolha sua AkumaNoMi: ",randomAkumaNoMis,scan));
+
         InterfaceService.cleanTerminal();
         InterfaceService.loadText("load player");
-        InterfaceService.timer(2);
+        InterfaceService.timer(1);
         InterfaceService.cleanTerminal();
-        InterfaceService.title("Escolha uma Dungeon");
-        CacheService.getDungeons().values().forEach(InterfaceService::showOption);
-        InterfaceService.anyQuestion("Dungeon:");
-        DungeonNavigator.comeInDungeon(player,CacheService.getDungeons().get(scan.nextInt()));
+
+        List<Dungeon> dungeons = CacheService.getDungeons().values().stream().toList();
+        DungeonNavigator.comeInDungeon(player,InterfaceService.chooseOneOption("Escolha uma dungeon: ",dungeons,scan));
         Enemy enemy = DungeonNavigator.getNextEnemy();
 
         while (enemy != null && player.isLive()) {
@@ -59,13 +58,9 @@ public class GameInterface {
                 InterfaceService.timer(1);
                 //choose turn:
                 if (CombatServie.isPlayerTurn()) {
-                    //TODO: Choose option method;
-                    InterfaceService.anyQuestion("Escolha seu ataque");
-                    CombatServie.hitEntity(enemy,player.getPowers().get(scan.nextInt()));
+                    CombatServie.hitEntity(enemy,InterfaceService.chooseOneOption("Escolha seu ataque: ", player.getPowers(), scan));
                 } else {
-                    List<Integer> enemyPowers = enemy.getPowers().stream().map(Power::getId).toList();
-                    int randomPowerIndex = InterfaceService.random(enemyPowers.size());
-                    CombatServie.hitEntity(player,enemy.getPowerByIndex(randomPowerIndex));
+                    CombatServie.hitEntity(player,InterfaceService.chooseOneOption(enemy.getPowers()));
                 }
                 InterfaceService.timer(1);
                 InterfaceService.cleanTerminal();
@@ -99,6 +94,7 @@ public class GameInterface {
             InterfaceService.timer(1);
         }
         InterfaceService.cleanTerminal();
+        scan.close();
         InterfaceService.tellerSays("closing PowerPiece... BYE!");
         InterfaceService.timer(1);
     }
