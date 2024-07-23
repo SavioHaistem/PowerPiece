@@ -1,10 +1,10 @@
 package com.PowerPiece.entities.models;
 
-import com.PowerPiece.interfaces.Atackable;
-import com.PowerPiece.interfaces.Attack;
+import com.PowerPiece.entities.TextDecorations;
 import com.PowerPiece.enums.PowerType;
+import com.PowerPiece.interfaces.Optionable;
 
-public class Power implements Attack {
+public class Power implements Optionable {
     protected Integer id;
     protected String name;
     protected Integer category;
@@ -78,17 +78,12 @@ public class Power implements Attack {
     }
 
     @Override
-    public void inflictDamage(Atackable entity, Integer damage) {
-
-    }
-
-    @Override
     public String toString() {
         return "Power (name: " + name + ") ";
     }
 
     @Override
-    public String getOption() {
-        return "(" + id + "): " + name;
+    public String getOption(int value) {
+        return TextDecorations.YELLOW + "(" + value + "): " + TextDecorations.CYAN + description + TextDecorations.RESET;
     }
 }
