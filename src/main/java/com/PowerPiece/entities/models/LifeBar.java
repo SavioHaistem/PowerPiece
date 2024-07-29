@@ -43,11 +43,19 @@ public class LifeBar {
 
     //TODO: convert minus and plus life to setCurrentLife;
     public void minusLife(int minusLifeValue) {
-        currentLife -= minusLifeValue;
+        if(currentLife > minusLifeValue) {
+            currentLife -= minusLifeValue;
+        } else {
+            currentLife = 0;
+        }
     }
 
     public void plusLife(Integer plusLifeValue) {
-        currentLife += plusLifeValue;
+        if (plusLifeValue + currentLife <= maxLife) {
+            currentLife += plusLifeValue;
+        } else {
+            currentLife = maxLife;
+        }
     }
 
     public void updateHealthBar() {
