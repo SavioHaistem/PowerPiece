@@ -5,7 +5,6 @@ import com.PowerPiece.entities.akumanomis.AkumaNoMi;
 import com.PowerPiece.entities.dungeos.Dungeon;
 import com.PowerPiece.entities.enemies.Enemy;
 import com.PowerPiece.entities.models.LifeBar;
-import com.PowerPiece.entities.models.Power;
 import com.PowerPiece.services.CacheService;
 import com.PowerPiece.services.CombatServie;
 import com.PowerPiece.services.DungeonNavigator;
@@ -50,8 +49,8 @@ public class GameInterface {
             InterfaceService.loadText("carregando inimigo");
             InterfaceService.timer(1);
             InterfaceService.cleanTerminal();
+            CombatServie.healEntity(player,40);
             while(enemy.isLive() && player.isLive()) {
-                CombatServie.healEntity(player,40);
                 InterfaceService.cleanTerminal();
                 System.out.println(enemy);
                 System.out.println(player.toStringWithPowers());
